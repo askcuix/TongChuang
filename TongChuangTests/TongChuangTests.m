@@ -1,19 +1,19 @@
 //
-//  TongChuangBaoTests.m
-//  TongChuangBaoTests
+//  TongChuangTests.m
+//  TongChuang
 //
-//  Created by cuixiang on 15/7/8.
+//  Created by cuixiang on 15/8/6.
 //  Copyright (c) 2015年 Chris. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@interface TongChuangBaoTests : XCTestCase
+@interface TongChuangTests : XCTestCase
 
 @end
 
-@implementation TongChuangBaoTests
+@implementation TongChuangTests
 
 - (void)setUp {
     [super setUp];
