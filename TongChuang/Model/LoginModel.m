@@ -34,6 +34,7 @@ NSString * const kLogoutNotification = @"kLogoutNotification";
         _isLogined = YES;
         _account = phone;
         _uid = 1000;
+        _avatar = @"http://photo.l99.com/bigger/31/1363231021567_5zu910.jpg";
         
         [self saveAccount];
     }

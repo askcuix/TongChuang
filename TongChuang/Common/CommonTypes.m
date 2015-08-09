@@ -106,7 +106,7 @@
 
 @end
 
-@implementation PersonInfo
+@implementation UserInfo
 
 
 @end

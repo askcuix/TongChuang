@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ChatManager.h"
 
-@interface UserModel : NSObject
+@interface UserModel : NSObject <ChatUserDelegate>
 
 @end

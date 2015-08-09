@@ -74,6 +74,22 @@
 		83AFBD351B5E797200653533 /* ContactListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AFBD341B5E797200653533 /* ContactListTableViewCell.m */; };
 		83BE17A81B60C996003C1145 /* EditNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BE17A71B60C996003C1145 /* EditNameViewController.m */; };
 		83BE17AB1B60D08B003C1145 /* EditEducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BE17AA1B60D08B003C1145 /* EditEducationViewController.m */; };
+		83BEA3BB1B76E6A600FA84BE /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3BA1B76E6A600FA84BE /* BaseNavigationController.m */; };
+		83BEA3C11B76E82000FA84BE /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3C01B76E82000FA84BE /* BaseTableViewController.m */; };
+		83BEA3C41B76F0AA00FA84BE /* ChatListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3C31B76F0AA00FA84BE /* ChatListTableViewController.m */; };
+		83BEA3C81B76F39800FA84BE /* AVIMConversation+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3C71B76F39800FA84BE /* AVIMConversation+Custom.m */; };
+		83BEA3CC1B76F6DA00FA84BE /* UIImage+Icon.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3CB1B76F6DA00FA84BE /* UIImage+Icon.m */; };
+		83BEA3D01B775A2000FA84BE /* ChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3CF1B775A2000FA84BE /* ChatManager.m */; };
+		83BEA3D31B77607800FA84BE /* ConversationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3D21B77607800FA84BE /* ConversationStore.m */; };
+		83BEA3D61B7769A900FA84BE /* FailedMessageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3D51B7769A900FA84BE /* FailedMessageStore.m */; };
+		83BEA3D91B777C8C00FA84BE /* ChatSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3D81B777C8C00FA84BE /* ChatSoundManager.m */; };
+		83BEA3DD1B77818A00FA84BE /* loudReceive.caf in Resources */ = {isa = PBXBuildFile; fileRef = 83BEA3DA1B77818A00FA84BE /* loudReceive.caf */; };
+		83BEA3DE1B77818A00FA84BE /* receive.caf in Resources */ = {isa = PBXBuildFile; fileRef = 83BEA3DB1B77818A00FA84BE /* receive.caf */; };
+		83BEA3DF1B77818A00FA84BE /* send.caf in Resources */ = {isa = PBXBuildFile; fileRef = 83BEA3DC1B77818A00FA84BE /* send.caf */; };
+		83BEA3E21B778C3F00FA84BE /* ChatPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3E11B778C3F00FA84BE /* ChatPushManager.m */; };
+		83BEA3E51B77986000FA84BE /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3E41B77986000FA84BE /* UserModel.m */; };
+		83BEA3E81B779A2D00FA84BE /* ChatUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3E71B779A2D00FA84BE /* ChatUserModel.m */; };
+		83BEA3EB1B779D2300FA84BE /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3EA1B779D2300FA84BE /* CacheManager.m */; };
 		83C7B7D31B73BBF90023FF0A /* TongChuangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C7B7D21B73BBF90023FF0A /* TongChuangTests.m */; };
 		83FC624D1B56760900EF2924 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FC624C1B56760900EF2924 /* logo@2x.png */; };
 		83FC625C1B5783EA00EF2924 /* BasicProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FC625B1B5783EA00EF2924 /* BasicProfileViewController.m */; };
@@ -177,8 +193,8 @@
 		83A6ADFF1B5B935900942665 /* DatePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePicker.xib; sourceTree = "<group>"; };
 		83A6AE011B5B96AA00942665 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
 		83A6AE021B5B96AA00942665 /* DatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePicker.m; sourceTree = "<group>"; };
-		83AFBCF61B5D119400653533 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
-		83AFBCF71B5D119400653533 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		83AFBCF61B5D119400653533 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = TongChuang/UI/Base/BaseViewController.h; sourceTree = SOURCE_ROOT; };
+		83AFBCF71B5D119400653533 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = TongChuang/UI/Base/BaseViewController.m; sourceTree = SOURCE_ROOT; };
 		83AFBCF91B5D18B100653533 /* profile_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_normal@2x.png"; sourceTree = "<group>"; };
 		83AFBCFB1B5D18CA00653533 /* chat_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_normal@2x.png"; sourceTree = "<group>"; };
 		83AFBCFD1B5D199D00653533 /* profile_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_press@2x.png"; sourceTree = "<group>"; };
@@ -212,6 +228,35 @@
 		83BE17A71B60C996003C1145 /* EditNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNameViewController.m; sourceTree = "<group>"; };
 		83BE17A91B60D08B003C1145 /* EditEducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditEducationViewController.h; sourceTree = "<group>"; };
 		83BE17AA1B60D08B003C1145 /* EditEducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditEducationViewController.m; sourceTree = "<group>"; };
+		83BEA3B91B76E6A600FA84BE /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		83BEA3BA1B76E6A600FA84BE /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
+		83BEA3BF1B76E82000FA84BE /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
+		83BEA3C01B76E82000FA84BE /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		83BEA3C21B76F0AA00FA84BE /* ChatListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListTableViewController.h; sourceTree = "<group>"; };
+		83BEA3C31B76F0AA00FA84BE /* ChatListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListTableViewController.m; sourceTree = "<group>"; };
+		83BEA3C61B76F39800FA84BE /* AVIMConversation+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVIMConversation+Custom.h"; sourceTree = "<group>"; };
+		83BEA3C71B76F39800FA84BE /* AVIMConversation+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVIMConversation+Custom.m"; sourceTree = "<group>"; };
+		83BEA3CA1B76F6DA00FA84BE /* UIImage+Icon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Icon.h"; sourceTree = "<group>"; };
+		83BEA3CB1B76F6DA00FA84BE /* UIImage+Icon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Icon.m"; sourceTree = "<group>"; };
+		83BEA3CE1B775A2000FA84BE /* ChatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatManager.h; sourceTree = "<group>"; };
+		83BEA3CF1B775A2000FA84BE /* ChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatManager.m; sourceTree = "<group>"; };
+		83BEA3D11B77607800FA84BE /* ConversationStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationStore.h; sourceTree = "<group>"; };
+		83BEA3D21B77607800FA84BE /* ConversationStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationStore.m; sourceTree = "<group>"; };
+		83BEA3D41B7769A900FA84BE /* FailedMessageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FailedMessageStore.h; sourceTree = "<group>"; };
+		83BEA3D51B7769A900FA84BE /* FailedMessageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FailedMessageStore.m; sourceTree = "<group>"; };
+		83BEA3D71B777C8C00FA84BE /* ChatSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSoundManager.h; sourceTree = "<group>"; };
+		83BEA3D81B777C8C00FA84BE /* ChatSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSoundManager.m; sourceTree = "<group>"; };
+		83BEA3DA1B77818A00FA84BE /* loudReceive.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = loudReceive.caf; sourceTree = "<group>"; };
+		83BEA3DB1B77818A00FA84BE /* receive.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = receive.caf; sourceTree = "<group>"; };
+		83BEA3DC1B77818A00FA84BE /* send.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = send.caf; sourceTree = "<group>"; };
+		83BEA3E01B778C3F00FA84BE /* ChatPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatPushManager.h; sourceTree = "<group>"; };
+		83BEA3E11B778C3F00FA84BE /* ChatPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatPushManager.m; sourceTree = "<group>"; };
+		83BEA3E31B77986000FA84BE /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		83BEA3E41B77986000FA84BE /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		83BEA3E61B779A2D00FA84BE /* ChatUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatUserModel.h; sourceTree = "<group>"; };
+		83BEA3E71B779A2D00FA84BE /* ChatUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatUserModel.m; sourceTree = "<group>"; };
+		83BEA3E91B779D2300FA84BE /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
+		83BEA3EA1B779D2300FA84BE /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		83C7B7D21B73BBF90023FF0A /* TongChuangTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TongChuangTests.m; sourceTree = "<group>"; };
 		83FC624C1B56760900EF2924 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		83FC625A1B5783EA00EF2924 /* BasicProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicProfileViewController.h; sourceTree = "<group>"; };
@@ -373,6 +418,7 @@
 		835C21C51B4D4BD10096EC89 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				83BEA3C91B76F6AB00FA84BE /* Chat */,
 				83A6ADFE1B5B933800942665 /* DatePicker */,
 				83A6ADF71B5B46BD00942665 /* PickerDelegate */,
 				83A6ADEE1B5B385700942665 /* PickerView */,
@@ -394,6 +440,10 @@
 				830ABCBF1B66125A00B13202 /* LoginModel.m */,
 				83967D441B6658C30062F55B /* SettingModel.h */,
 				83967D451B6658C30062F55B /* SettingModel.m */,
+				83BEA3E31B77986000FA84BE /* UserModel.h */,
+				83BEA3E41B77986000FA84BE /* UserModel.m */,
+				83BEA3E91B779D2300FA84BE /* CacheManager.h */,
+				83BEA3EA1B779D2300FA84BE /* CacheManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -415,6 +465,7 @@
 		835C21C81B4D4C250096EC89 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				83BEA3B81B76E60700FA84BE /* Base */,
 				835C21C51B4D4BD10096EC89 /* Component */,
 				83AFBD101B5D1D5D00653533 /* Profile */,
 				83AFBD0F1B5D1D4900653533 /* Service */,
@@ -425,8 +476,6 @@
 				833B83BF1B53DAE60011AEA3 /* UserGuiderViewController.m */,
 				833B83C11B53DD680011AEA3 /* MainTabViewController.h */,
 				833B83C21B53DD680011AEA3 /* MainTabViewController.m */,
-				83AFBCF61B5D119400653533 /* BaseViewController.h */,
-				83AFBCF71B5D119400653533 /* BaseViewController.m */,
 				830ABCC11B661F6400B13202 /* ControllerManager.h */,
 				830ABCC21B661F6400B13202 /* ControllerManager.m */,
 			);
@@ -547,6 +596,9 @@
 		83AFBD091B5D1A6200653533 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				83BEA3DA1B77818A00FA84BE /* loudReceive.caf */,
+				83BEA3DB1B77818A00FA84BE /* receive.caf */,
+				83BEA3DC1B77818A00FA84BE /* send.caf */,
 				83AFBCFB1B5D18CA00653533 /* chat_normal@2x.png */,
 				83AFBCFF1B5D19A500653533 /* chat_press@2x.png */,
 			);
@@ -590,6 +642,8 @@
 				83AFBD291B5E2F2000653533 /* ChatListCell.xib */,
 				83AFBD2B1B5E2FCB00653533 /* ChatListTableViewCell.h */,
 				83AFBD2C1B5E2FCB00653533 /* ChatListTableViewCell.m */,
+				83BEA3C21B76F0AA00FA84BE /* ChatListTableViewController.h */,
+				83BEA3C31B76F0AA00FA84BE /* ChatListTableViewController.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -635,6 +689,42 @@
 				83BE17AA1B60D08B003C1145 /* EditEducationViewController.m */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		83BEA3B81B76E60700FA84BE /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				83AFBCF61B5D119400653533 /* BaseViewController.h */,
+				83AFBCF71B5D119400653533 /* BaseViewController.m */,
+				83BEA3B91B76E6A600FA84BE /* BaseNavigationController.h */,
+				83BEA3BA1B76E6A600FA84BE /* BaseNavigationController.m */,
+				83BEA3BF1B76E82000FA84BE /* BaseTableViewController.h */,
+				83BEA3C01B76E82000FA84BE /* BaseTableViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		83BEA3C91B76F6AB00FA84BE /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				83BEA3CA1B76F6DA00FA84BE /* UIImage+Icon.h */,
+				83BEA3CB1B76F6DA00FA84BE /* UIImage+Icon.m */,
+				83BEA3C61B76F39800FA84BE /* AVIMConversation+Custom.h */,
+				83BEA3C71B76F39800FA84BE /* AVIMConversation+Custom.m */,
+				83BEA3CE1B775A2000FA84BE /* ChatManager.h */,
+				83BEA3CF1B775A2000FA84BE /* ChatManager.m */,
+				83BEA3D11B77607800FA84BE /* ConversationStore.h */,
+				83BEA3D21B77607800FA84BE /* ConversationStore.m */,
+				83BEA3D41B7769A900FA84BE /* FailedMessageStore.h */,
+				83BEA3D51B7769A900FA84BE /* FailedMessageStore.m */,
+				83BEA3D71B777C8C00FA84BE /* ChatSoundManager.h */,
+				83BEA3D81B777C8C00FA84BE /* ChatSoundManager.m */,
+				83BEA3E01B778C3F00FA84BE /* ChatPushManager.h */,
+				83BEA3E11B778C3F00FA84BE /* ChatPushManager.m */,
+				83BEA3E61B779A2D00FA84BE /* ChatUserModel.h */,
+				83BEA3E71B779A2D00FA84BE /* ChatUserModel.m */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		83FC626A1B58F71A00EF2924 /* ImageCropper */ = {
@@ -748,10 +838,12 @@
 				83A6ADF01B5B390600942665 /* PickerView.xib in Resources */,
 				83AFBD321B5E792E00653533 /* ContactGroupCell.xib in Resources */,
 				83AFBD001B5D19A500653533 /* chat_press@2x.png in Resources */,
+				83BEA3DF1B77818A00FA84BE /* send.caf in Resources */,
 				83AFBCFE1B5D199D00653533 /* profile_press@2x.png in Resources */,
 				835C21A81B4D4AA40096EC89 /* Main.storyboard in Resources */,
 				83A6AE001B5B935900942665 /* DatePicker.xib in Resources */,
 				83FC624D1B56760900EF2924 /* logo@2x.png in Resources */,
+				83BEA3DD1B77818A00FA84BE /* loudReceive.caf in Resources */,
 				83AFBCFA1B5D18B100653533 /* profile_normal@2x.png in Resources */,
 				83AFBD081B5D19D600653533 /* contact_press@2x.png in Resources */,
 				835FDA9E1B5521F60004F20C /* guide_2@2x.png in Resources */,
@@ -766,6 +858,7 @@
 				83AFBD2A1B5E2F2000653533 /* ChatListCell.xib in Resources */,
 				835FDA9C1B5521F60004F20C /* guide_0@2x.png in Resources */,
 				83AFBD301B5E788600653533 /* ContactListCell.xib in Resources */,
+				83BEA3DE1B77818A00FA84BE /* receive.caf in Resources */,
 				83FC62671B589BB400EF2924 /* avatar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -825,12 +918,15 @@
 				83AFBCF81B5D119400653533 /* BaseViewController.m in Sources */,
 				830246B91B5FA8D200935ADA /* MyPreferenceViewController.m in Sources */,
 				833B83C31B53DD680011AEA3 /* MainTabViewController.m in Sources */,
+				83BEA3C41B76F0AA00FA84BE /* ChatListTableViewController.m in Sources */,
 				83A6ADF61B5B44FE00942665 /* UIViewUtil.m in Sources */,
 				83AFBD1F1B5DE18200653533 /* ChatListViewController.m in Sources */,
 				83FC62651B57C14300EF2924 /* IndustryInfoViewController.m in Sources */,
 				83AFBD161B5D1DD600653533 /* ContactNavigationViewController.m in Sources */,
 				83AFBD251B5DE29700653533 /* ServiceSearchViewController.m in Sources */,
 				83A6ADE11B5A735600942665 /* FileUtil.m in Sources */,
+				83BEA3D31B77607800FA84BE /* ConversationStore.m in Sources */,
+				83BEA3BB1B76E6A600FA84BE /* BaseNavigationController.m in Sources */,
 				83967D691B68CD710062F55B /* RegisterViewController.m in Sources */,
 				83AFBD191B5D1DED00653533 /* ServiceNavigationViewController.m in Sources */,
 				83967D9F1B6F98A60062F55B /* RecommendCircleTableCell.m in Sources */,
@@ -841,13 +937,16 @@
 				83A6ADE51B5A9A9700942665 /* FileModel.m in Sources */,
 				83967D461B6658C30062F55B /* SettingModel.m in Sources */,
 				83AFBD1C1B5D1E3900653533 /* MyPreferenceNavigationViewController.m in Sources */,
+				83BEA3CC1B76F6DA00FA84BE /* UIImage+Icon.m in Sources */,
 				83A6ADFA1B5B470100942665 /* SingerPickerViewDelegate.m in Sources */,
 				83FC62621B57BF5100EF2924 /* HighSchoolInfoViewController.m in Sources */,
 				83A6AE031B5B96AA00942665 /* DatePicker.m in Sources */,
+				83BEA3C11B76E82000FA84BE /* BaseTableViewController.m in Sources */,
 				83FC625F1B57B6A700EF2924 /* UniversityInfoViewController.m in Sources */,
 				833B83C01B53DAE60011AEA3 /* UserGuiderViewController.m in Sources */,
 				83FC626D1B58F75100EF2924 /* ImageCropperViewController.m in Sources */,
 				83A6ADED1B5AA45B00942665 /* AvatarUtil.m in Sources */,
+				83BEA3EB1B779D2300FA84BE /* CacheManager.m in Sources */,
 				83A6ADFD1B5B6CD900942665 /* UIImage+ImageEffects.m in Sources */,
 				830ABCC01B66125A00B13202 /* LoginModel.m in Sources */,
 				83AFBD221B5DE19100653533 /* ContactListViewController.m in Sources */,
@@ -855,7 +954,12 @@
 				835C21A21B4D4AA40096EC89 /* AppDelegate.m in Sources */,
 				835C21CC1B4D531A0096EC89 /* DES3Util.m in Sources */,
 				83967D711B68EE040062F55B /* AddPasswordViewController.m in Sources */,
+				83BEA3D91B777C8C00FA84BE /* ChatSoundManager.m in Sources */,
+				83BEA3E51B77986000FA84BE /* UserModel.m in Sources */,
 				83FC625C1B5783EA00EF2924 /* BasicProfileViewController.m in Sources */,
+				83BEA3E21B778C3F00FA84BE /* ChatPushManager.m in Sources */,
+				83BEA3D01B775A2000FA84BE /* ChatManager.m in Sources */,
+				83BEA3C81B76F39800FA84BE /* AVIMConversation+Custom.m in Sources */,
 				83AFBD351B5E797200653533 /* ContactListTableViewCell.m in Sources */,
 				835C21CF1B4D55210096EC89 /* SecurityUtil.m in Sources */,
 				83A6ADE91B5AA01100942665 /* CameraUtil.m in Sources */,
@@ -864,6 +968,8 @@
 				83967D6E1B68DDB50062F55B /* ValidateUtil.m in Sources */,
 				835C219F1B4D4AA40096EC89 /* main.m in Sources */,
 				830ABCBD1B660D8C00B13202 /* AppModel.m in Sources */,
+				83BEA3D61B7769A900FA84BE /* FailedMessageStore.m in Sources */,
+				83BEA3E81B779A2D00FA84BE /* ChatUserModel.m in Sources */,
 				83BE17AB1B60D08B003C1145 /* EditEducationViewController.m in Sources */,
 				83967D961B6F93480062F55B /* RecommendListViewController.m in Sources */,
 				83FD43CA1B5FC2CE00DECB0E /* EditPersonalInfoViewController.m in Sources */,

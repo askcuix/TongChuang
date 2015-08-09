@@ -48,7 +48,7 @@ typedef NS_ENUM(NSUInteger, DegreeType) {
 
 @end
 
-@interface PersonInfo : NSObject
+@interface UserInfo : NSObject
 
 @property (nonatomic, assign) NSInteger uid;
 @property (nonatomic, strong) NSString *name;

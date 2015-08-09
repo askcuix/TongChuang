@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FileModel.h"
 #import "LoginModel.h"
+#import "UserModel.h"
 
 @interface AppModel : NSObject
 
@@ -16,6 +17,7 @@
 
 @property (nonatomic, readonly, strong) FileModel *fileModel;
 @property (nonatomic, readonly, strong) LoginModel *loginModel;
+@property (nonatomic, readonly, strong) UserModel *userModel;
 
 - (void)initModel;
 - (void)destroyModel;

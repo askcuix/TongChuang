@@ -1,7 +1,9 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '6.0'
+platform :ios, '7.0'
 
+pod 'AVOSCloud'
+pod 'AVOSCloudIM'
 pod 'FMDB', '~> 2.5'
 pod 'AFNetworking', '~> 2.5.4'
 pod 'SDWebImage', '~> 3.7.3'

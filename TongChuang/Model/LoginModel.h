@@ -22,6 +22,7 @@ typedef NS_ENUM(NSUInteger, LoginResultCode) {
 
 @property (nonatomic, readonly, strong) NSString *account;
 @property (nonatomic, readonly, assign) NSUInteger uid;
+@property (nonatomic, readonly, strong) NSString *avatar;
 @property (nonatomic, readonly, assign) BOOL isLogined;
 
 - (void)login:(NSString *)phone password:(NSString *)password;
