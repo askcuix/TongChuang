@@ -88,6 +88,11 @@
 }
 
 - (void)presentMainController {
+    //显示主视图
+    if (!_mainController) {
+        _mainController = [ControllerManager viewControllerInMainStoryboard:@"MainTabViewController"];
+    }
+
     //缓存当前用户信息
     ChatUserModel *currentUser = [[ChatUserModel alloc] init];
     currentUser.userId = [NSString stringWithFormat:@"%lu", (unsigned long)[[AppModel sharedInstance].loginModel uid]];
@@ -106,14 +111,10 @@
         if (!succeeded) {
             NSLog(@"Connect chat server error: %@", error);
         }
+        
+        _window.rootViewController = _mainController;
     }];
     
-    //显示主视图
-    if (!_mainController) {
-        _mainController = [ControllerManager viewControllerInMainStoryboard:@"MainTabViewController"];
-    }
-    
-    _window.rootViewController = _mainController;
 }
 
 - (void)presentLoginController {
