@@ -15,11 +15,12 @@
 #import "LoginViewController.h"
 #import "AppModel.h"
 #import "SettingModel.h"
+#import "ChatManager.h"
+#import "ChatUserModel.h"
+#import "CacheManager.h"
 
 @interface ControllerManager () <UserGuideViewDelegate> {
-    BaseViewController *_rootController;
-    UINavigationController *_accountController;
-    UserGuiderViewController *_userGuideController;
+    UIWindow *_window;
     MainTabViewController *_mainController;
 }
 
@@ -39,13 +40,24 @@
 
 #pragma mark - launch
 - (void)applicationLaunch {
-    if (!_rootController) {
-        _rootController = [[BaseViewController alloc] init];
+    if (!_window) {
+        _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _window.backgroundColor = [UIColor whiteColor];
         
-        UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        window.rootViewController = _rootController;
+        if (SYSTEM_VERSION >= 7.0) {
+            [[UINavigationBar appearance] setBarTintColor:RGBCOLOR(255, 152, 132)];
+            [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+        }
+        else {
+            [[UINavigationBar appearance] setTintColor:RGBCOLOR(255, 152, 132)];
+        }
+        [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                              [UIColor whiteColor], NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17], NSFontAttributeName, nil]];
         
-        [AppDelegate sharedInstance].window = window;
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        
+        [AppDelegate sharedInstance].window = _window;
         [[AppDelegate sharedInstance].window makeKeyAndVisible];
     }
     
@@ -61,13 +73,10 @@
 
 #pragma mark - present view
 - (void)presentGuideController {
-    if (!_userGuideController) {
-        _userGuideController = [ControllerManager viewControllerInSettingStoryboard:@"UserGuiderViewController"];
-        _userGuideController.delegate = self;
-    }
-    
-    [_rootController addChildViewController:_userGuideController];
-    [_rootController.view addSubview:_userGuideController.view];
+    UserGuiderViewController *userGuideController = [ControllerManager viewControllerInSettingStoryboard:@"UserGuiderViewController"];
+    userGuideController.delegate = self;
+
+    _window.rootViewController = userGuideController;
 }
 
 - (void)presentMainView {
@@ -79,33 +88,38 @@
 }
 
 - (void)presentMainController {
+    //缓存当前用户信息
+    ChatUserModel *currentUser = [[ChatUserModel alloc] init];
+    currentUser.userId = [NSString stringWithFormat:@"%lu", (unsigned long)[[AppModel sharedInstance].loginModel uid]];
+    currentUser.username = [[AppModel sharedInstance].loginModel account];
+    currentUser.avatarUrl = [[AppModel sharedInstance].loginModel avatar];
+    [[CacheManager manager] registerUsers:@[currentUser]];
+    
+    [ChatManager manager].userDelegate = [AppModel sharedInstance].userModel;
+    
+#ifdef DEBUG
+    [ChatManager manager].useDevPushCerticate = YES;
+#endif
+    
+    //连接IM服务器
+    [[ChatManager manager] openWithClientId:[NSString stringWithFormat:@"%lu", (unsigned long)[[AppModel sharedInstance].loginModel uid]] callback:^(BOOL succeeded, NSError *error) {
+        if (!succeeded) {
+            NSLog(@"Connect chat server error: %@", error);
+        }
+    }];
+    
+    //显示主视图
     if (!_mainController) {
         _mainController = [ControllerManager viewControllerInMainStoryboard:@"MainTabViewController"];
     }
     
-    [_rootController addChildViewController:_mainController];
-    [_rootController.view addSubview:_mainController.view];
+    _window.rootViewController = _mainController;
 }
 
 - (void)presentLoginController {
-    if (!_accountController) {
-        LoginViewController *_loginController = [ControllerManager viewControllerInSettingStoryboard:@"LoginViewController"];
-        _accountController = [[UINavigationController alloc] initWithRootViewController:_loginController];
-        
-    }
-    
-    [_rootController addChildViewController:_accountController];
-    [_rootController.view addSubview:_accountController.view];
-}
-
-- (void)loginSuccessed {
-    if (_accountController) {
-        [_accountController removeFromParentViewController];
-        [_accountController.view removeFromSuperview];
-        _accountController = nil;
-    }
-    
-    [self presentMainView];
+    LoginViewController *loginController = [ControllerManager viewControllerInSettingStoryboard:@"LoginViewController"];
+   
+    _window.rootViewController = loginController;
 }
 
 #pragma mark - storyboard
@@ -128,12 +142,6 @@
 
 #pragma mark - UserGuideViewDelegate
 - (void)userGuideCompleted {
-    if (_userGuideController) {
-        [_userGuideController removeFromParentViewController];
-        [_userGuideController.view removeFromSuperview];
-        _userGuideController = nil;
-    }
-    
     [[SettingModel sharedInstance] setBool:YES forKey:kUserGuideShowedKey];
     
     [self presentMainView];

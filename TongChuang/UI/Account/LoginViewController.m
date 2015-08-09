@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "ControllerManager.h"
+#import "RegisterViewController.h"
 #import "ValidateUtil.h"
 #import "AppModel.h"
 
@@ -17,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
 - (IBAction)loginBtnClick:(UIButton *)sender;
+- (IBAction)registerBtnClick:(UIButton *)sender;
 
 @end
 
@@ -26,9 +28,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    // set navigation bar color
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:255.0f/255.0f green:152.0f/255.0f blue:132.0f/255.0f alpha:1.0];
-    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -72,13 +71,20 @@
     [[AppModel sharedInstance].loginModel login:_mobileField.text password:_passwordField.text];
 }
 
+- (IBAction)registerBtnClick:(UIButton *)sender {
+    RegisterViewController *registerController = [ControllerManager viewControllerInSettingStoryboard:@"RegisterViewController"];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:registerController];
+    
+    [self presentViewController:navController animated:YES completion:nil];
+}
+
 #pragma mark - Notification
 - (void)onLoginResult:(NSNotification *)notification {
     NSInteger result = [[notification.userInfo valueForKey:kLoginResult] integerValue];
     
     if (result == LoginSuccess) {
         NSLog(@"登录成功");
-        [[ControllerManager sharedInstance] loginSuccessed];
+        [[ControllerManager sharedInstance] presentMainView];
     } else {
         NSLog(@"登录失败");
     }

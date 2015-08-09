@@ -52,7 +52,9 @@
 }
 
 - (IBAction)backBtnClick:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[ControllerManager sharedInstance] presentMainView];
+    }];
 }
 
 - (IBAction)nextBtnClick:(UIBarButtonItem *)sender {

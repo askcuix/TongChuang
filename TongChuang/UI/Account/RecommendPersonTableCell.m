@@ -10,7 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface RecommendPersonTableCell () {
-    PersonInfo *_personInfo;
+    UserInfo *_personInfo;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImgView;
@@ -34,7 +34,7 @@
 }
 
 #pragma mark - view
-- (void)setPersonInfo:(PersonInfo *)personInfo {
+- (void)setPersonInfo:(UserInfo *)personInfo {
     if (!personInfo) {
         return;
     }

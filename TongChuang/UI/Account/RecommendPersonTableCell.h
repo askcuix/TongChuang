@@ -11,6 +11,6 @@
 
 @interface RecommendPersonTableCell : UITableViewCell
 
-- (void)setPersonInfo:(PersonInfo *)personInfo;
+- (void)setPersonInfo:(UserInfo *)personInfo;
 
 @end

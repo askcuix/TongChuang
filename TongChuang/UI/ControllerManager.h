@@ -15,7 +15,6 @@
 - (void)applicationLaunch;
 
 - (void)presentMainView;
-- (void)loginSuccessed;
 
 + (id)viewControllerInMainStoryboard:(NSString *)identifier;
 + (id)viewControllerInSettingStoryboard:(NSString *)identifier;

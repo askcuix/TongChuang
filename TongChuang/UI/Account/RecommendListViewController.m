@@ -53,7 +53,7 @@ static NSString *RecommendPersonTableIdentifier = @"RecommendPersonTableViewCell
     
     _personList = [NSMutableArray array];
     for (int i = 1; i < 11; i++) {
-        PersonInfo *person = [[PersonInfo alloc] init];
+        UserInfo *person = [[UserInfo alloc] init];
         person.uid = i;
         person.name = [NSString stringWithFormat:@"同学%d", i];
         person.avatarUrl = @"http://photo.l99.com/bigger/31/1363231021567_5zu910.jpg";
@@ -105,7 +105,7 @@ static NSString *RecommendPersonTableIdentifier = @"RecommendPersonTableViewCell
         return circleCell;
     }
     
-    PersonInfo *person = _personList[indexPath.row];
+    UserInfo *person = _personList[indexPath.row];
     RecommendPersonTableCell *personCell = [tableView dequeueReusableCellWithIdentifier:RecommendPersonTableIdentifier];
     [personCell setPersonInfo:person];
     return personCell;
@@ -138,6 +138,8 @@ static NSString *RecommendPersonTableIdentifier = @"RecommendPersonTableViewCell
 
 #pragma mark - action
 - (IBAction)doneBtnClick:(UIBarButtonItem *)sender {
-    [[ControllerManager sharedInstance] loginSuccessed];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[ControllerManager sharedInstance] presentMainView];
+    }];
 }
 @end
