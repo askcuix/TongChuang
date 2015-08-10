@@ -26,9 +26,9 @@
 
 #pragma mark - common style
 //设置状态栏的字体为白色
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
+//- (UIStatusBarStyle)preferredStatusBarStyle {
+//    return UIStatusBarStyleLightContent;
+//}
 
 #pragma mark - common action
 //隐藏键盘，绑定到Did End On Exit事件

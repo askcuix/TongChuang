@@ -71,7 +71,7 @@
                         <color key="barTintColor" red="1" green="0.59768969999999999" blue="0.51725977609999996" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="DhN-XZ-ujB" kind="relationship" relationship="rootViewController" id="ytK-Dx-xDb"/>
+                        <segue destination="MPZ-lF-rah" kind="relationship" relationship="rootViewController" id="1TM-zT-tai"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yoC-lg-ASB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -114,7 +114,34 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Da8-nM-m8i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="313" y="379"/>
+            <point key="canvasLocation" x="1129" y="379"/>
+        </scene>
+        <!--聊天-->
+        <scene sceneID="XlB-b1-Sn4">
+            <objects>
+                <tableViewController id="MPZ-lF-rah" customClass="ChatListTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7PV-0s-MV8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="zq1-1W-u7T">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zq1-1W-u7T" id="NLs-Fo-W7z">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MPZ-lF-rah" id="Fbt-yM-k6r"/>
+                            <outlet property="delegate" destination="MPZ-lF-rah" id="epX-zb-FSN"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="聊天" id="mfA-Mz-azx"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="abd-ql-1eW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="363" y="379"/>
         </scene>
         <!--Contact List View Controller-->
         <scene sceneID="vO6-vG-eMu">

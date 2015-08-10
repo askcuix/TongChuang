@@ -19,11 +19,6 @@
 @property (nonatomic, strong) NSMutableDictionary *conversationDatas;
 @property (nonatomic, assign) NSInteger totalUnreadCount;
 
-/**
- *  推送弹框点击时记录的 convid
- */
-@property (nonatomic, strong) NSString *remoteNotificationConvid;
-
 @end
 
 @implementation ChatManager
