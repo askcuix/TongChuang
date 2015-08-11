@@ -28,6 +28,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeKeyboard:)];
+    tap.numberOfTapsRequired = 1;
+    tap.numberOfTouchesRequired = 1;
+    [self.view addGestureRecognizer:tap];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -76,6 +80,11 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:registerController];
     
     [self presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)closeKeyboard:(id)sender {
+    [_mobileField resignFirstResponder];
+    [_passwordField resignFirstResponder];
 }
 
 #pragma mark - Notification

@@ -116,10 +116,10 @@
             </objects>
             <point key="canvasLocation" x="1129" y="379"/>
         </scene>
-        <!--聊天-->
+        <!--Chat List Table View Controller-->
         <scene sceneID="XlB-b1-Sn4">
             <objects>
-                <tableViewController id="MPZ-lF-rah" customClass="ChatListTableViewController" sceneMemberID="viewController">
+                <tableViewController id="MPZ-lF-rah" userLabel="Chat List Table View Controller" customClass="ChatListTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7PV-0s-MV8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
