@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ChatUserModel.h"
+#import "CommonTypes.h"
 
 typedef void (^CacheResultBlock)(BOOL succeeded, NSError *error);
 
@@ -15,7 +15,7 @@ typedef void (^CacheResultBlock)(BOOL succeeded, NSError *error);
 
 + (instancetype)manager;
 
-- (ChatUserModel *)lookupChatUser:(NSString *)userId;
+- (UserInfo *)lookupChatUser:(NSString *)userId;
 - (void)registerUsers:(NSArray *)users;
 - (void)cacheUsersWithIds:(NSSet *)userIds callback:(CacheResultBlock)callback;
 

@@ -54,8 +54,8 @@
 - (NSAttributedString *)attributedStringWithMessage:(AVIMTypedMessage *)message conversation:(AVIMConversation *)conversation {
     NSString *title = [self getMessageTitle:message];
     if (conversation.type == ConversationTypeGroup) {
-        ChatUserModel *user = [[ChatManager manager].userDelegate getUserById:message.clientId];
-        title = [NSString stringWithFormat:@"%@: %@", user.username, title];
+        UserInfo *user = [[ChatManager manager].userDelegate getUserById:message.clientId];
+        title = [NSString stringWithFormat:@"%@: %@", user.name, title];
     }
     if (conversation.muted && conversation.unreadCount > 0) {
         title = [NSString stringWithFormat:@"[%ld条] %@", conversation.unreadCount, title];

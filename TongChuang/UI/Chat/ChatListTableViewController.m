@@ -9,9 +9,9 @@
 #import "ChatListTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <DateTools/DateTools.h>
+#import "CommonTypes.h"
 #import "ConnStatusView.h"
 #import "ChatManager.h"
-#import "ChatUserModel.h"
 #import "ChatMessageHelper.h"
 #import "ConversationStore.h"
 
@@ -179,8 +179,8 @@ static NSMutableArray *cacheConvs;
     ConversationCell *cell = [ConversationCell dequeueOrCreateCellByTableView:tableView];
     AVIMConversation *conversation = [self.conversations objectAtIndex:indexPath.row];
     if (conversation.type == ConversationTypeSingle) {
-        ChatUserModel *user = [[ChatManager manager].userDelegate getUserById:conversation.otherId];
-        cell.nameLabel.text = user.username;
+        UserInfo *user = [[ChatManager manager].userDelegate getUserById:conversation.otherId];
+        cell.nameLabel.text = user.name;
         [cell.avatarImageView sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
     } else {
         [cell.avatarImageView setImage:conversation.icon];

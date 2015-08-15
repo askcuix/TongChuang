@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0Oi-1H-6Qr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0Oi-1H-6Qr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -46,14 +46,14 @@
         <scene sceneID="aaN-2R-brs">
             <objects>
                 <navigationController title="Contact Navigation View Controller" id="HK8-1X-Fx2" customClass="ContactNavigationViewController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="通讯录" image="contact_normal.png" id="eU4-5b-Duc"/>
+                    <tabBarItem key="tabBarItem" title="人脉" image="contact_normal.png" id="eU4-5b-Duc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="r4d-ZK-8uj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="0.59768969999999999" blue="0.51725977609999996" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="8fh-Kv-JJM" kind="relationship" relationship="rootViewController" id="VwA-Ib-DYb"/>
+                        <segue destination="O6i-pf-mo3" kind="relationship" relationship="rootViewController" id="EoL-D0-jjh"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQW-c7-5YT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -143,6 +143,25 @@
             </objects>
             <point key="canvasLocation" x="363" y="379"/>
         </scene>
+        <!--Contact List Table View Controller-->
+        <scene sceneID="pYK-Ck-VzS">
+            <objects>
+                <viewController id="O6i-pf-mo3" userLabel="Contact List Table View Controller" customClass="ContactListTableViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gu5-A1-DXj"/>
+                        <viewControllerLayoutGuide type="bottom" id="6nJ-8Z-VCh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mwt-kK-QeH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="人脉" id="dTc-hc-3x9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b94-7X-JKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="363" y="1072"/>
+        </scene>
         <!--Contact List View Controller-->
         <scene sceneID="vO6-vG-eMu">
             <objects>
@@ -180,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SRt-9S-eg7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="313" y="1072"/>
+            <point key="canvasLocation" x="1129" y="1085"/>
         </scene>
         <!--Service Search View Controller-->
         <scene sceneID="LCS-oG-GAf">

@@ -34,13 +34,13 @@
 }
 
 #pragma mark - chat user cache
-- (ChatUserModel *)lookupChatUser:(NSString *)userId {
+- (UserInfo *)lookupChatUser:(NSString *)userId {
     return [self.userCache objectForKey:userId];
 }
 
 - (void)registerUsers:(NSArray *)users {
-    for (ChatUserModel *user in users) {
-        [self.userCache setObject:user forKey:user.userId];
+    for (UserInfo *user in users) {
+        [self.userCache setObject:user forKey:[NSString stringWithFormat:@"%ld", user.uid]];
     }
 }
 

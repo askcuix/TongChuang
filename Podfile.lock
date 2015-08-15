@@ -20,8 +20,8 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AVOSCloud (3.1.3)
-  - AVOSCloudIM (3.1.3):
+  - AVOSCloud (3.1.3.3)
+  - AVOSCloudIM (3.1.3.3):
     - AVOSCloud
   - DateTools (1.6.1)
   - FMDB (2.5):
@@ -30,6 +30,7 @@ PODS:
   - FMDB/standard (2.5):
     - FMDB/common
   - JSBadgeView (1.4.1)
+  - MBProgressHUD (0.9.1)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -41,15 +42,17 @@ DEPENDENCIES:
   - DateTools (~> 1.6.1)
   - FMDB (~> 2.5)
   - JSBadgeView
+  - MBProgressHUD (~> 0.9.1)
   - SDWebImage (~> 3.7.3)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
-  AVOSCloud: c1cabe598bfeecf8fa506a6f21e940b75aee4f62
-  AVOSCloudIM: ec6e59969e4af6a29e1b744fa7932c6c5ccb39ed
+  AVOSCloud: f561a1938da652fa5b112cd45960f1e342a3dca4
+  AVOSCloudIM: b42d1445b85e2e667c96d28063991a7b6126a710
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   JSBadgeView: 3861ddee41094284d9468e6d0af5107f703aaac5
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
 
 COCOAPODS: 0.37.2

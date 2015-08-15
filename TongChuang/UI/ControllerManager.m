@@ -9,6 +9,7 @@
 #import "ControllerManager.h"
 #import "AppDelegate.h"
 #import "CommonDefs.h"
+#import "CommonTypes.h"
 #import "BaseViewController.h"
 #import "UserGuiderViewController.h"
 #import "MainTabViewController.h"
@@ -16,7 +17,6 @@
 #import "AppModel.h"
 #import "SettingModel.h"
 #import "ChatManager.h"
-#import "ChatUserModel.h"
 #import "CacheManager.h"
 
 @interface ControllerManager () <UserGuideViewDelegate> {
@@ -45,14 +45,14 @@
         _window.backgroundColor = [UIColor whiteColor];
         
         if (SYSTEM_VERSION >= 7.0) {
-            [[UINavigationBar appearance] setBarTintColor:RGBCOLOR(255, 152, 132)];
+            [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
             [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
         }
         else {
-            [[UINavigationBar appearance] setTintColor:RGBCOLOR(255, 152, 132)];
+            [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
         }
         [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                              [UIColor whiteColor], NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17], NSFontAttributeName, nil]];
+                                                              [UIColor blackColor], NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17], NSFontAttributeName, nil]];
         
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -94,9 +94,9 @@
     }
 
     //缓存当前用户信息
-    ChatUserModel *currentUser = [[ChatUserModel alloc] init];
-    currentUser.userId = [NSString stringWithFormat:@"%lu", (unsigned long)[[AppModel sharedInstance].loginModel uid]];
-    currentUser.username = [[AppModel sharedInstance].loginModel account];
+    UserInfo *currentUser = [[UserInfo alloc] init];
+    currentUser.uid = [[AppModel sharedInstance].loginModel uid];
+    currentUser.name = [[AppModel sharedInstance].loginModel account];
     currentUser.avatarUrl = [[AppModel sharedInstance].loginModel avatar];
     [[CacheManager manager] registerUsers:@[currentUser]];
     

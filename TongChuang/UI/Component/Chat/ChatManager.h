@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ChatUserModel.h"
+#import "CommonTypes.h"
 #import "AVIMConversation+Custom.h"
 
 /**
@@ -43,7 +43,7 @@ typedef void (^RecentConversationsCallback)(NSArray *conversations, NSInteger to
 /**
  *  同步方法，下面的 cacheUserByIds:block 方法是为了 getUserById: 能同步返回用户信息
  */
-- (ChatUserModel *)getUserById:(NSString *)userId;
+- (UserInfo *)getUserById:(NSString *)userId;
 
 
 /**

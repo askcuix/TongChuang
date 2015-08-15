@@ -17,12 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    //设置tabBar背景色
-    UIView *tabBarView = [[UIView alloc] initWithFrame:self.tabBar.bounds];
-    tabBarView.backgroundColor = [UIColor clearColor];
-    [self.tabBar insertSubview:tabBarView atIndex:0];
-    self.tabBar.opaque = YES;
 }
 
 - (void)didReceiveMemoryWarning {

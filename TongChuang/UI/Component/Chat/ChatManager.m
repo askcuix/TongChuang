@@ -161,12 +161,12 @@
 #pragma mark - utils
 
 - (void)sendMessage:(AVIMTypedMessage*)message conversation:(AVIMConversation *)conversation callback:(AVBooleanResultBlock)block {
-    ChatUserModel *selfUser = [[ChatManager manager].userDelegate getUserById:self.selfId];
+    UserInfo *selfUser = [[ChatManager manager].userDelegate getUserById:self.selfId];
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
     // 云代码中获取到用户名，来设置推送消息, 老王:今晚约吗？
-    if (selfUser.username) {
+    if (selfUser.name) {
         // 避免为空造成崩溃
-        [attributes setObject:selfUser.username forKey:@"username"];
+        [attributes setObject:selfUser.name forKey:@"username"];
     }
     if (self.useDevPushCerticate) {
         [attributes setObject:@YES forKey:@"dev"];
@@ -490,8 +490,8 @@
         return NO;
     } else {
         NSString *text = ((AVIMTextMessage *)message).text;
-        ChatUserModel *selfUser = [self.userDelegate getUserById:self.selfId];
-        NSString *pattern = [NSString stringWithFormat:@"@%@ ",selfUser.username];
+        UserInfo *selfUser = [self.userDelegate getUserById:self.selfId];
+        NSString *pattern = [NSString stringWithFormat:@"@%@ ",selfUser.name];
         if([text rangeOfString:pattern].length > 0) {
             return YES;
         } else {

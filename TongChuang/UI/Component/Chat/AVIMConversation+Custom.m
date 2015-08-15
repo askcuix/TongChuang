@@ -7,9 +7,9 @@
 //
 
 #import "AVIMConversation+Custom.h"
+#import "CommonTypes.h"
 #import "UIImage+Icon.h"
 #import <objc/runtime.h>
-#import "ChatUserModel.h"
 #import "ChatManager.h"
 
 @implementation AVIMConversation (Custom)
@@ -45,8 +45,8 @@
 + (NSString *)nameOfUserIds:(NSArray *)userIds {
     NSMutableArray *names = [NSMutableArray array];
     for (int i = 0; i < userIds.count; i++) {
-        ChatUserModel *user = [[ChatManager manager].userDelegate getUserById:[userIds objectAtIndex:i]];
-        [names addObject:user.username];
+        UserInfo *user = [[ChatManager manager].userDelegate getUserById:[userIds objectAtIndex:i]];
+        [names addObject:user.name];
     }
     return [names componentsJoinedByString:@","];
 }
@@ -54,8 +54,8 @@
 - (NSString *)displayName {
     if ([self type] == ConversationTypeSingle) {
         NSString *otherId = [self otherId];
-        ChatUserModel *other = [[ChatManager manager].userDelegate getUserById:otherId];
-        return other.username;
+        UserInfo *other = [[ChatManager manager].userDelegate getUserById:otherId];
+        return other.name;
     }
     else {
         return self.name;

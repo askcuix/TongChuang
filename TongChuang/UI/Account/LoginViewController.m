@@ -72,6 +72,7 @@
         return;
     }
     
+    [self showProgress];
     [[AppModel sharedInstance].loginModel login:_mobileField.text password:_passwordField.text];
 }
 
@@ -89,6 +90,8 @@
 
 #pragma mark - Notification
 - (void)onLoginResult:(NSNotification *)notification {
+    [self hideProgress];
+    
     NSInteger result = [[notification.userInfo valueForKey:kLoginResult] integerValue];
     
     if (result == LoginSuccess) {
