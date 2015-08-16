@@ -190,7 +190,8 @@
                             <constraint firstItem="EPT-bI-um3" firstAttribute="top" secondItem="tsR-V0-beD" secondAttribute="bottom" constant="30" id="yu5-rp-Nmz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="同窗" id="3ZS-rM-c9a"/>
+                    <navigationItem key="navigationItem" title="登录" id="3ZS-rM-c9a"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="mobileField" destination="peR-Vz-6QV" id="zSo-u5-vEs"/>
                         <outlet property="passwordField" destination="K7i-IA-qjS" id="apz-Rt-jWP"/>

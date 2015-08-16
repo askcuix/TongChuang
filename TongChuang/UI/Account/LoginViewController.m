@@ -10,6 +10,7 @@
 #import "ControllerManager.h"
 #import "RegisterViewController.h"
 #import "ValidateUtil.h"
+#import "CacheManager.h"
 #import "AppModel.h"
 
 @interface LoginViewController ()
@@ -95,10 +96,18 @@
     NSInteger result = [[notification.userInfo valueForKey:kLoginResult] integerValue];
     
     if (result == LoginSuccess) {
-        NSLog(@"登录成功");
+        [self toast:@"登录成功"];
+        
+        //缓存当前用户信息
+        UserInfo *currentUser = [[UserInfo alloc] init];
+        currentUser.uid = [[AppModel sharedInstance].loginModel uid];
+        currentUser.name = [[AppModel sharedInstance].loginModel account];
+        currentUser.avatarUrl = [[AppModel sharedInstance].loginModel avatar];
+        [[CacheManager manager] registerUsers:@[currentUser]];
+        
         [[ControllerManager sharedInstance] presentMainView];
     } else {
-        NSLog(@"登录失败");
+        [self toast:@"登录失败"];
     }
 }
 

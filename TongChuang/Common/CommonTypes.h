@@ -56,3 +56,25 @@ typedef NS_ENUM(NSUInteger, DegreeType) {
 @property (nonatomic, strong) NSString *schoolName;
 
 @end
+
+@interface UserProfile : NSObject
+
+@property (nonatomic, assign) NSInteger uid;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *avatarUrl;
+@property (nonatomic, strong) NSString *location;
+@property (nonatomic, assign) DegreeType highestDegree;
+@property (nonatomic, strong) NSArray *eduInfo;
+
+@end
+
+@interface EducationInfo : NSObject
+
+@property (nonatomic, assign) DegreeType degree;
+@property (nonatomic, strong) NSString *schooleName;
+@property (nonatomic, strong) NSString *major;
+@property (nonatomic, strong) NSString *className;
+@property (nonatomic, strong) NSDate *startTime;
+
+
+@end

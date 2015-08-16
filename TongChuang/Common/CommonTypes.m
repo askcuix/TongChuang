@@ -110,3 +110,11 @@
 
 
 @end
+
+@implementation UserProfile
+
+@end
+
+@implementation EducationInfo
+
+@end

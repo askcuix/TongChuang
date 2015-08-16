@@ -11,13 +11,19 @@
 #import "CommonDefs.h"
 #import "CommonTypes.h"
 #import "BaseViewController.h"
+#import "BaseNavigationController.h"
 #import "UserGuiderViewController.h"
 #import "MainTabViewController.h"
 #import "LoginViewController.h"
+#import "ChatListViewController.h"
+#import "ContactListViewController.h"
+#import "ServiceSearchViewController.h"
+#import "MyPreferenceViewController.h"
 #import "AppModel.h"
 #import "SettingModel.h"
 #import "ChatManager.h"
 #import "CacheManager.h"
+#import "ViewUtil.h"
 
 @interface ControllerManager () <UserGuideViewDelegate> {
     UIWindow *_window;
@@ -44,18 +50,14 @@
         _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _window.backgroundColor = [UIColor whiteColor];
         
-        if (SYSTEM_VERSION >= 7.0) {
-            [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
-            [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-        }
-        else {
-            [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-        }
-        [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                              [UIColor blackColor], NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17], NSFontAttributeName, nil]];
+        [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+        [[UINavigationBar appearance] setTintColor:[UIColor blueColor]];
+        [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont boldSystemFontOfSize:17] }];
+        
+        [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor grayColor] } forState:UIControlStateNormal];
+        [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithRed:38.0f/255.0f green:40.0f/255.0f blue:60.0f/255.0f alpha:1.000] } forState:UIControlStateSelected];
         
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
         [AppDelegate sharedInstance].window = _window;
         [[AppDelegate sharedInstance].window makeKeyAndVisible];
@@ -90,37 +92,31 @@
 - (void)presentMainController {
     //显示主视图
     if (!_mainController) {
-        _mainController = [ControllerManager viewControllerInMainStoryboard:@"MainTabViewController"];
-    }
-
-    //缓存当前用户信息
-    UserInfo *currentUser = [[UserInfo alloc] init];
-    currentUser.uid = [[AppModel sharedInstance].loginModel uid];
-    currentUser.name = [[AppModel sharedInstance].loginModel account];
-    currentUser.avatarUrl = [[AppModel sharedInstance].loginModel avatar];
-    [[CacheManager manager] registerUsers:@[currentUser]];
-    
-    [ChatManager manager].userDelegate = [AppModel sharedInstance].userModel;
-    
-#ifdef DEBUG
-    [ChatManager manager].useDevPushCerticate = YES;
-#endif
-    
-    //连接IM服务器
-    [[ChatManager manager] openWithClientId:[NSString stringWithFormat:@"%lu", (unsigned long)[[AppModel sharedInstance].loginModel uid]] callback:^(BOOL succeeded, NSError *error) {
-        if (!succeeded) {
-            NSLog(@"Connect chat server error: %@", error);
-        }
+        _mainController = [[MainTabViewController alloc] init];
+        [ViewUtil addTabItemController:[[ChatListViewController alloc] init] toTabBarController:_mainController];
+        [ViewUtil addTabItemController:[[ContactListViewController alloc] init] toTabBarController:_mainController];
         
-        _window.rootViewController = _mainController;
-    }];
+        ServiceSearchViewController *serviceController = [ControllerManager viewControllerInMainStoryboard:@"ServiceSearchViewController"];
+        serviceController.title=@"发现";
+        [ViewUtil setNormalTabItem:serviceController imageName:@"service_normal.png"];
+        [ViewUtil setSelectedTabItem:serviceController imageName:@"service_press.png"];
+        [ViewUtil addTabItemController:serviceController toTabBarController:_mainController];
+        
+        MyPreferenceViewController *preferenceController = [ControllerManager viewControllerInMainStoryboard:@"MyPreferenceViewController"];
+        preferenceController.title=@"我";
+        [ViewUtil setNormalTabItem:preferenceController imageName:@"profile_normal.png"];
+        [ViewUtil setSelectedTabItem:preferenceController imageName:@"profile_press.png"];
+        [ViewUtil addTabItemController:preferenceController toTabBarController:_mainController];
+    }
     
+    _window.rootViewController = _mainController;
 }
 
 - (void)presentLoginController {
     LoginViewController *loginController = [ControllerManager viewControllerInSettingStoryboard:@"LoginViewController"];
+    BaseNavigationController *loginNavController = [[BaseNavigationController alloc] initWithRootViewController:loginController];
    
-    _window.rootViewController = loginController;
+    _window.rootViewController = loginNavController;
 }
 
 #pragma mark - storyboard

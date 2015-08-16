@@ -25,6 +25,7 @@
     _fileModel = [[FileModel alloc] init];
     _loginModel = [[LoginModel alloc] init];
     _userModel = [[UserModel alloc] init];
+    _circleModel = [[CircleModel alloc] init];
     
 }
 

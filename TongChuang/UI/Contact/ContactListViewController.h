@@ -1,14 +1,16 @@
 //
-//  ContactListViewController.h
+//  ContactListTableViewController.h
 //  TongChuang
 //
-//  Created by cuixiang on 15/7/21.
+//  Created by cuixiang on 15/8/13.
 //  Copyright (c) 2015年 Chris. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
-@interface ContactListViewController : UIViewController
-        <UITableViewDataSource, UITableViewDelegate>
+@interface ContactListViewController : BaseTableViewController
+
+- (void)refresh;
 
 @end

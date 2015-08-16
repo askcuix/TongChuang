@@ -10,6 +10,7 @@
 #import "FileModel.h"
 #import "LoginModel.h"
 #import "UserModel.h"
+#import "CircleModel.h"
 
 @interface AppModel : NSObject
 
@@ -18,6 +19,7 @@
 @property (nonatomic, readonly, strong) FileModel *fileModel;
 @property (nonatomic, readonly, strong) LoginModel *loginModel;
 @property (nonatomic, readonly, strong) UserModel *userModel;
+@property (nonatomic, readonly, strong) CircleModel *circleModel;
 
 - (void)initModel;
 - (void)destroyModel;
