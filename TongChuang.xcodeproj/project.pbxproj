@@ -27,6 +27,8 @@
 		833B83BB1B53C9960011AEA3 /* NSDictionary+JsonSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 833B83BA1B53C9960011AEA3 /* NSDictionary+JsonSafe.m */; };
 		833B83C01B53DAE60011AEA3 /* UserGuiderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833B83BF1B53DAE60011AEA3 /* UserGuiderViewController.m */; };
 		833B83C31B53DD680011AEA3 /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833B83C21B53DD680011AEA3 /* MainTabViewController.m */; };
+		834E23BC1B8493D600FF7610 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 834E23BB1B8493D600FF7610 /* back@2x.png */; };
+		834E23C11B84DFE700FF7610 /* KeyboardHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 834E23C01B84DFE700FF7610 /* KeyboardHelper.m */; };
 		835B08DE1B8353D2008CA17E /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B08DD1B8353D2008CA17E /* UIView+Extension.m */; };
 		835B08E11B835568008CA17E /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B08E01B835568008CA17E /* UIColor+Extension.m */; };
 		835B08E31B835BCE008CA17E /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 835B08E21B835BCE008CA17E /* logo@2x.png */; };
@@ -155,6 +157,9 @@
 		833B83BF1B53DAE60011AEA3 /* UserGuiderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGuiderViewController.m; sourceTree = "<group>"; };
 		833B83C11B53DD680011AEA3 /* MainTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabViewController.h; sourceTree = "<group>"; };
 		833B83C21B53DD680011AEA3 /* MainTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabViewController.m; sourceTree = "<group>"; };
+		834E23BB1B8493D600FF7610 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		834E23BF1B84DFE700FF7610 /* KeyboardHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardHelper.h; sourceTree = "<group>"; };
+		834E23C01B84DFE700FF7610 /* KeyboardHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardHelper.m; sourceTree = "<group>"; };
 		835B08DC1B8353D2008CA17E /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		835B08DD1B8353D2008CA17E /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		835B08DF1B835568008CA17E /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
@@ -357,6 +362,15 @@
 			name = guide;
 			sourceTree = "<group>";
 		};
+		834E23BE1B84DFB500FF7610 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				834E23BF1B84DFE700FF7610 /* KeyboardHelper.h */,
+				834E23C01B84DFE700FF7610 /* KeyboardHelper.m */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
 		835B08DB1B83532F008CA17E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,6 +486,7 @@
 		835C21C51B4D4BD10096EC89 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				834E23BE1B84DFB500FF7610 /* Keyboard */,
 				83A4C69A1B78FFF000CBAB48 /* ChatPush */,
 				83A4C68D1B78DC1500CBAB48 /* StatusView */,
 				83BEA3C91B76F6AB00FA84BE /* Chat */,
@@ -513,6 +528,7 @@
 				83AFBD0A1B5D1A7900653533 /* Contact */,
 				83AFBD091B5D1A6200653533 /* Chat */,
 				835B08E21B835BCE008CA17E /* logo@2x.png */,
+				834E23BB1B8493D600FF7610 /* back@2x.png */,
 				83FC62661B589BB400EF2924 /* avatar@2x.png */,
 				833B83C41B53E11E0011AEA3 /* guide */,
 			);
@@ -927,6 +943,7 @@
 				83A4C6921B78DD4500CBAB48 /* messageSendFail@2x.png in Resources */,
 				83A6AE001B5B935900942665 /* DatePicker.xib in Resources */,
 				83BEA3DD1B77818A00FA84BE /* loudReceive.caf in Resources */,
+				834E23BC1B8493D600FF7610 /* back@2x.png in Resources */,
 				83AFBCFA1B5D18B100653533 /* profile_normal@2x.png in Resources */,
 				835B08E31B835BCE008CA17E /* logo@2x.png in Resources */,
 				833B654C1B7FB59000DAF3E4 /* RecommendContactTableCell.xib in Resources */,
@@ -1005,6 +1022,7 @@
 				83AFBCF81B5D119400653533 /* BaseViewController.m in Sources */,
 				830246B91B5FA8D200935ADA /* MyPreferenceViewController.m in Sources */,
 				835B08E11B835568008CA17E /* UIColor+Extension.m in Sources */,
+				834E23C11B84DFE700FF7610 /* KeyboardHelper.m in Sources */,
 				833B83C31B53DD680011AEA3 /* MainTabViewController.m in Sources */,
 				83BEA3C41B76F0AA00FA84BE /* ChatListViewController.m in Sources */,
 				83FC62651B57C14300EF2924 /* IndustryInfoViewController.m in Sources */,

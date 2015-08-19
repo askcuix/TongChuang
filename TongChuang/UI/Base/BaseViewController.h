@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CommonDefs.h"
 #import "CommonTypes.h"
+#import "KeyboardHelper.h"
 #import "ControllerManager.h"
 
 typedef NS_ENUM(NSUInteger, ToastType) {

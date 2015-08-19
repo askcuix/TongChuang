@@ -55,6 +55,20 @@
         [[UINavigationBar appearance] setTintColor:[UIColor clearColor]];
         [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : UIColorHex(@"#262626"), NSFontAttributeName : [UIFont systemFontOfSize:17] }];
         
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+         setTitleTextAttributes: @{
+                                   NSForegroundColorAttributeName:UIColorHex(@"#46a5e3"),
+                                   NSFontAttributeName:[UIFont systemFontOfSize:15]
+                                   }
+         forState:UIControlStateNormal];
+        
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+         setTitleTextAttributes:@{
+                                  NSForegroundColorAttributeName:UIColorHex(@"#a5a7aa"),
+                                  NSFontAttributeName:[UIFont systemFontOfSize:17]
+                                  }
+         forState:UIControlStateDisabled];
+        
         [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : UIColorHex(@"#a5a7aa"), NSFontAttributeName : [UIFont systemFontOfSize:10] } forState:UIControlStateNormal];
         [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : UIColorHex(@"#46a5e3"), NSFontAttributeName : [UIFont systemFontOfSize:10] } forState:UIControlStateSelected];
         

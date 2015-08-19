@@ -32,15 +32,12 @@
     // Do any additional setup after loading the view.
     
     [self.loginBtn setCornerRadius:4 maskToBounds:YES];
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeKeyboard:)];
-    tap.numberOfTapsRequired = 1;
-    tap.numberOfTouchesRequired = 1;
-    [self.view addGestureRecognizer:tap];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [[KeyboardHelper helper] setViewToKeyboardHelper:_passwordField withShouldOffsetView:self.view];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLoginResult:) name:kLoginNotification object:nil];
 }
@@ -83,11 +80,6 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:registerController];
     
     [self presentViewController:navController animated:YES completion:nil];
-}
-
-- (void)closeKeyboard:(id)sender {
-    [_mobileField resignFirstResponder];
-    [_passwordField resignFirstResponder];
 }
 
 #pragma mark - Notification
