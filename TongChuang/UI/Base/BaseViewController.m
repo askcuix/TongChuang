@@ -54,8 +54,29 @@
     [hud hide:YES afterDelay:duration];
 }
 
--(void)showHUDText:(NSString*)text{
-    [self toast:text];
+- (void)showHUDText:(NSString *)text type:(ToastType) toastType {
+    MBProgressHUD* hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelFont = [UIFont systemFontOfSize:14];
+    hud.labelText = text;
+    
+    NSString *imgName = nil;
+    switch (toastType) {
+        case Warning:
+            imgName = @"icon_tips_jingtan";
+            break;
+        case Fail:
+            imgName = @"icon_tips_kulian";
+            break;
+        default:
+            imgName = @"icon_tips_xiaolian";
+            break;
+    }
+    
+    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imgName]];
+    hud.mode = MBProgressHUDModeCustomView;
+    hud.removeFromSuperViewOnHide = YES;
+    
+    [hud hide:YES afterDelay:2];
 }
 
 @end

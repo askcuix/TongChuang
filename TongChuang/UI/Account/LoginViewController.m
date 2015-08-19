@@ -64,16 +64,13 @@
     [_passwordField resignFirstResponder];
     
     if ([_mobileField.text length] == 0) {
-        NSLog(@"手机号码不能为空！");
-        _mobileField.backgroundColor = [UIColor redColor];
+        [self showHUDText:@"手机号不能为空" type:Fail];
         return;
     } else if ([_passwordField.text length] == 0) {
-        NSLog(@"密码不能为空！");
-        _passwordField.backgroundColor = [UIColor redColor];
+        [self showHUDText:@"密码不能为空" type:Fail];
         return;
     } else if (![ValidateUtil validatePhoneNum:[_mobileField text]]) {
-        NSLog(@"手机号码格式不正确！");
-        _mobileField.backgroundColor = [UIColor redColor];
+        [self showHUDText:@"手机号格式不正确" type:Fail];
         return;
     }
     
@@ -100,8 +97,6 @@
     NSInteger result = [[notification.userInfo valueForKey:kLoginResult] integerValue];
     
     if (result == LoginSuccess) {
-        [self toast:@"登录成功"];
-        
         //缓存当前用户信息
         UserInfo *currentUser = [[UserInfo alloc] init];
         currentUser.uid = [[AppModel sharedInstance].loginModel uid];
@@ -111,7 +106,7 @@
         
         [[ControllerManager sharedInstance] presentMainView];
     } else {
-        [self toast:@"登录失败"];
+        [self showHUDText:@"登录失败" type:Fail];
     }
 }
 

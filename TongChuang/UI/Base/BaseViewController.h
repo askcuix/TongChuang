@@ -11,6 +11,12 @@
 #import "CommonTypes.h"
 #import "ControllerManager.h"
 
+typedef NS_ENUM(NSUInteger, ToastType) {
+    Warning,
+    Success,
+    Fail,
+};
+
 @interface BaseViewController : UIViewController
 
 #pragma mark - common action
@@ -21,7 +27,7 @@
 
 - (void)hideProgress;
 
-- (void)showHUDText:(NSString *)text;
+- (void)showHUDText:(NSString *)text type:(ToastType) toastType;
 
 - (void)toast:(NSString *)text;
 
