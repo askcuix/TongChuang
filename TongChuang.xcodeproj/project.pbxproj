@@ -27,6 +27,9 @@
 		833B83BB1B53C9960011AEA3 /* NSDictionary+JsonSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 833B83BA1B53C9960011AEA3 /* NSDictionary+JsonSafe.m */; };
 		833B83C01B53DAE60011AEA3 /* UserGuiderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833B83BF1B53DAE60011AEA3 /* UserGuiderViewController.m */; };
 		833B83C31B53DD680011AEA3 /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833B83C21B53DD680011AEA3 /* MainTabViewController.m */; };
+		835B08DE1B8353D2008CA17E /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B08DD1B8353D2008CA17E /* UIView+Extension.m */; };
+		835B08E11B835568008CA17E /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B08E01B835568008CA17E /* UIColor+Extension.m */; };
+		835B08E31B835BCE008CA17E /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 835B08E21B835BCE008CA17E /* logo@2x.png */; };
 		835C219F1B4D4AA40096EC89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C219E1B4D4AA40096EC89 /* main.m */; };
 		835C21A21B4D4AA40096EC89 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C21A11B4D4AA40096EC89 /* AppDelegate.m */; };
 		835C21A81B4D4AA40096EC89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835C21A61B4D4AA40096EC89 /* Main.storyboard */; };
@@ -63,7 +66,6 @@
 		83A6ADED1B5AA45B00942665 /* AvatarUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A6ADEC1B5AA45B00942665 /* AvatarUtil.m */; };
 		83A6ADF01B5B390600942665 /* PickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A6ADEF1B5B390600942665 /* PickerView.xib */; };
 		83A6ADF31B5B3AEA00942665 /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A6ADF21B5B3AEA00942665 /* PickerView.m */; };
-		83A6ADF61B5B44FE00942665 /* UIViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A6ADF51B5B44FE00942665 /* UIViewUtil.m */; };
 		83A6ADFA1B5B470100942665 /* SingerPickerViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A6ADF91B5B470100942665 /* SingerPickerViewDelegate.m */; };
 		83A6ADFD1B5B6CD900942665 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A6ADFC1B5B6CD900942665 /* UIImage+ImageEffects.m */; };
 		83A6AE001B5B935900942665 /* DatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A6ADFF1B5B935900942665 /* DatePicker.xib */; };
@@ -96,7 +98,6 @@
 		83BEA3E51B77986000FA84BE /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3E41B77986000FA84BE /* UserModel.m */; };
 		83BEA3EB1B779D2300FA84BE /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEA3EA1B779D2300FA84BE /* CacheManager.m */; };
 		83C7B7D31B73BBF90023FF0A /* TongChuangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C7B7D21B73BBF90023FF0A /* TongChuangTests.m */; };
-		83FC624D1B56760900EF2924 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FC624C1B56760900EF2924 /* logo@2x.png */; };
 		83FC625C1B5783EA00EF2924 /* BasicProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FC625B1B5783EA00EF2924 /* BasicProfileViewController.m */; };
 		83FC625F1B57B6A700EF2924 /* UniversityInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FC625E1B57B6A700EF2924 /* UniversityInfoViewController.m */; };
 		83FC62621B57BF5100EF2924 /* HighSchoolInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FC62611B57BF5100EF2924 /* HighSchoolInfoViewController.m */; };
@@ -151,6 +152,11 @@
 		833B83BF1B53DAE60011AEA3 /* UserGuiderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGuiderViewController.m; sourceTree = "<group>"; };
 		833B83C11B53DD680011AEA3 /* MainTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabViewController.h; sourceTree = "<group>"; };
 		833B83C21B53DD680011AEA3 /* MainTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabViewController.m; sourceTree = "<group>"; };
+		835B08DC1B8353D2008CA17E /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		835B08DD1B8353D2008CA17E /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		835B08DF1B835568008CA17E /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
+		835B08E01B835568008CA17E /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
+		835B08E21B835BCE008CA17E /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		835C21991B4D4AA40096EC89 /* TongChuang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TongChuang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		835C219D1B4D4AA40096EC89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		835C219E1B4D4AA40096EC89 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -217,8 +223,6 @@
 		83A6ADEF1B5B390600942665 /* PickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerView.xib; sourceTree = "<group>"; };
 		83A6ADF11B5B3AEA00942665 /* PickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerView.h; sourceTree = "<group>"; };
 		83A6ADF21B5B3AEA00942665 /* PickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerView.m; sourceTree = "<group>"; };
-		83A6ADF41B5B44FE00942665 /* UIViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewUtil.h; sourceTree = "<group>"; };
-		83A6ADF51B5B44FE00942665 /* UIViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewUtil.m; sourceTree = "<group>"; };
 		83A6ADF81B5B470100942665 /* SingerPickerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingerPickerViewDelegate.h; sourceTree = "<group>"; };
 		83A6ADF91B5B470100942665 /* SingerPickerViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingerPickerViewDelegate.m; sourceTree = "<group>"; };
 		83A6ADFB1B5B6CD900942665 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -271,7 +275,6 @@
 		83BEA3E91B779D2300FA84BE /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		83BEA3EA1B779D2300FA84BE /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		83C7B7D21B73BBF90023FF0A /* TongChuangTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TongChuangTests.m; sourceTree = "<group>"; };
-		83FC624C1B56760900EF2924 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		83FC625A1B5783EA00EF2924 /* BasicProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicProfileViewController.h; sourceTree = "<group>"; };
 		83FC625B1B5783EA00EF2924 /* BasicProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicProfileViewController.m; sourceTree = "<group>"; };
 		83FC625D1B57B6A700EF2924 /* UniversityInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniversityInfoViewController.h; sourceTree = "<group>"; };
@@ -348,6 +351,17 @@
 			name = guide;
 			sourceTree = "<group>";
 		};
+		835B08DB1B83532F008CA17E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				835B08DC1B8353D2008CA17E /* UIView+Extension.h */,
+				835B08DD1B8353D2008CA17E /* UIView+Extension.m */,
+				835B08DF1B835568008CA17E /* UIColor+Extension.h */,
+				835B08E01B835568008CA17E /* UIColor+Extension.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		835C21901B4D4AA40096EC89 = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +430,7 @@
 		835C21C31B4D4B8F0096EC89 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				835B08DB1B83532F008CA17E /* Extensions */,
 				833B653A1B7F38CF00DAF3E4 /* View */,
 				83967D6B1B68DD940062F55B /* Validate */,
 				83A6ADEA1B5AA43C00942665 /* Image */,
@@ -448,8 +463,6 @@
 				83A6ADF71B5B46BD00942665 /* PickerDelegate */,
 				83A6ADEE1B5B385700942665 /* PickerView */,
 				83FC626A1B58F71A00EF2924 /* ImageCropper */,
-				83A6ADF41B5B44FE00942665 /* UIViewUtil.h */,
-				83A6ADF51B5B44FE00942665 /* UIViewUtil.m */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -482,7 +495,7 @@
 				83AFBD0B1B5D1A8C00653533 /* Service */,
 				83AFBD0A1B5D1A7900653533 /* Contact */,
 				83AFBD091B5D1A6200653533 /* Chat */,
-				83FC624C1B56760900EF2924 /* logo@2x.png */,
+				835B08E21B835BCE008CA17E /* logo@2x.png */,
 				83FC62661B589BB400EF2924 /* avatar@2x.png */,
 				833B83C41B53E11E0011AEA3 /* guide */,
 			);
@@ -895,9 +908,9 @@
 				835C21A81B4D4AA40096EC89 /* Main.storyboard in Resources */,
 				83A4C6921B78DD4500CBAB48 /* messageSendFail@2x.png in Resources */,
 				83A6AE001B5B935900942665 /* DatePicker.xib in Resources */,
-				83FC624D1B56760900EF2924 /* logo@2x.png in Resources */,
 				83BEA3DD1B77818A00FA84BE /* loudReceive.caf in Resources */,
 				83AFBCFA1B5D18B100653533 /* profile_normal@2x.png in Resources */,
+				835B08E31B835BCE008CA17E /* logo@2x.png in Resources */,
 				833B654C1B7FB59000DAF3E4 /* RecommendContactTableCell.xib in Resources */,
 				83AFBD081B5D19D600653533 /* contact_press@2x.png in Resources */,
 				835FDA9E1B5521F60004F20C /* guide_2@2x.png in Resources */,
@@ -971,9 +984,9 @@
 				83967D911B6F6C620062F55B /* DoublePickerViewDelegate.m in Sources */,
 				83AFBCF81B5D119400653533 /* BaseViewController.m in Sources */,
 				830246B91B5FA8D200935ADA /* MyPreferenceViewController.m in Sources */,
+				835B08E11B835568008CA17E /* UIColor+Extension.m in Sources */,
 				833B83C31B53DD680011AEA3 /* MainTabViewController.m in Sources */,
 				83BEA3C41B76F0AA00FA84BE /* ChatListViewController.m in Sources */,
-				83A6ADF61B5B44FE00942665 /* UIViewUtil.m in Sources */,
 				83FC62651B57C14300EF2924 /* IndustryInfoViewController.m in Sources */,
 				83AFBD251B5DE29700653533 /* ServiceSearchViewController.m in Sources */,
 				83A6ADE11B5A735600942665 /* FileUtil.m in Sources */,
@@ -986,6 +999,7 @@
 				8315DDC51B804E0600DE3EC6 /* ContactInfoViewController.m in Sources */,
 				833B83B81B53C8FE0011AEA3 /* JsonUtil.m in Sources */,
 				83A6ADE51B5A9A9700942665 /* FileModel.m in Sources */,
+				835B08DE1B8353D2008CA17E /* UIView+Extension.m in Sources */,
 				83967D461B6658C30062F55B /* SettingModel.m in Sources */,
 				83BEA3CC1B76F6DA00FA84BE /* UIImage+Icon.m in Sources */,
 				83A6ADFA1B5B470100942665 /* SingerPickerViewDelegate.m in Sources */,

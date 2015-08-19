@@ -7,7 +7,7 @@
 //
 
 #import "PickerView.h"
-#import "UIViewUtil.h"
+#import "UIView+Extension.h"
 #import "UIImage+ImageEffects.h"
 
 @interface PickerView () {
@@ -81,7 +81,7 @@
 
 - (void)hide {
     [UIView animateWithDuration:0.2 animations:^{
-        _pickerView.y = self.height;
+        _pickerView.top = self.height;
         _bgImageView.alpha = 0.0;
     } completion:^(BOOL finished) {
         [_bgImageView removeFromSuperview];

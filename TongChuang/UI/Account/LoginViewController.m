@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "ControllerManager.h"
+#import "UIView+Extension.h"
 #import "RegisterViewController.h"
 #import "ValidateUtil.h"
 #import "CacheManager.h"
@@ -17,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *mobileField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
 - (IBAction)loginBtnClick:(UIButton *)sender;
 - (IBAction)registerBtnClick:(UIButton *)sender;
@@ -28,6 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self.loginBtn setCornerRadius:4 maskToBounds:YES];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeKeyboard:)];
     tap.numberOfTapsRequired = 1;

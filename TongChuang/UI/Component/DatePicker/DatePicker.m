@@ -7,7 +7,7 @@
 //
 
 #import "DatePicker.h"
-#import "UIViewUtil.h"
+#import "UIView+Extension.h"
 #import "UIImage+ImageEffects.h"
 
 @interface DatePicker() {
@@ -107,7 +107,7 @@
 - (void)hide {
     [UIView animateWithDuration:0.2 animations:^{
         self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-        _pickerView.y = self.height;
+        _pickerView.top = self.height;
         _bgImageView.alpha = 0.0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];

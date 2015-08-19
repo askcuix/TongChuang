@@ -12,6 +12,7 @@
 #import "CommonTypes.h"
 #import "BaseViewController.h"
 #import "BaseNavigationController.h"
+#import "UIColor+Extension.h"
 #import "UserGuiderViewController.h"
 #import "MainTabViewController.h"
 #import "LoginViewController.h"
@@ -51,11 +52,11 @@
         _window.backgroundColor = [UIColor whiteColor];
         
         [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
-        [[UINavigationBar appearance] setTintColor:[UIColor blueColor]];
-        [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont boldSystemFontOfSize:17] }];
+        [[UINavigationBar appearance] setTintColor:[UIColor clearColor]];
+        [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : UIColorHex(@"#262626"), NSFontAttributeName : [UIFont systemFontOfSize:17] }];
         
-        [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor grayColor] } forState:UIControlStateNormal];
-        [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithRed:38.0f/255.0f green:40.0f/255.0f blue:60.0f/255.0f alpha:1.000] } forState:UIControlStateSelected];
+        [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : UIColorHex(@"#a5a7aa"), NSFontAttributeName : [UIFont systemFontOfSize:10] } forState:UIControlStateNormal];
+        [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : UIColorHex(@"#46a5e3"), NSFontAttributeName : [UIFont systemFontOfSize:10] } forState:UIControlStateSelected];
         
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
         
