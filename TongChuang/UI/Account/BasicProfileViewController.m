@@ -19,12 +19,13 @@
 #import "DatePicker.h"
 #import "UniversityInfoViewController.h"
 
-@interface BasicProfileViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageCropperDelegate, SingerPickerDelegate, DatePickerDelegate> {
+@interface BasicProfileViewController () <UIActionSheetDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageCropperDelegate, SingerPickerDelegate, DatePickerDelegate> {
     SingerPickerViewDelegate *_genderPickerDelegate;
     SingerPickerViewDelegate *_degreePickerDelegate;
     PickerView *_genderPickerView;
     PickerView *_degreePickerView;
     DatePicker *_datePicker;
+    UIAlertView *_remindAlert;
     
     DegreeType _highestDegree;
 }
@@ -35,8 +36,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *highestDegreeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *graduateTimeLabel;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *nextBtn;
+
 
 - (IBAction)nextBtnClick:(UIBarButtonItem *)sender;
+- (IBAction)changeGender:(UIButton *)sender;
+- (IBAction)changeHighestDegree:(UIButton *)sender;
+- (IBAction)changeGraduateTime:(UIButton *)sender;
 
 @end
 
@@ -48,29 +54,22 @@
     
     //隐藏返回按钮
     [self.navigationItem setHidesBackButton:YES animated:NO];
+    [self.nextBtn setEnabled:NO];
     
     //设置头像图片
-    [self initAvatar];
+    [self initAvatarView];
     
     //更改头像图片
     [self.avatarImageView setUserInteractionEnabled:YES];
     UITapGestureRecognizer *avatarGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseEditAvatar)];
     [self.avatarImageView addGestureRecognizer:avatarGesture];
     
-    //更改性别
-    [self.genderLabel setUserInteractionEnabled:YES];
-    UITapGestureRecognizer *genderGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeGender)];
-    [self.genderLabel addGestureRecognizer:genderGesture];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    //更改最高学历
-    [self.highestDegreeLabel setUserInteractionEnabled:YES];
-    UITapGestureRecognizer *degreeGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeHighestDegree)];
-    [self.highestDegreeLabel addGestureRecognizer:degreeGesture];
-    
-    //更改毕业时间
-    [self.graduateTimeLabel setUserInteractionEnabled:YES];
-    UITapGestureRecognizer *graduateGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeGraduate)];
-    [self.graduateTimeLabel addGestureRecognizer:graduateGesture];
+    [[KeyboardHelper helper] setViewToKeyboardHelper:_nameField withShouldOffsetView:self.view];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,60 +78,29 @@
 }
 
 #pragma mark - view
-- (void)initAvatar {
-    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:@"http://photo.l99.com/bigger/31/1363231021567_5zu910.jpg"]];
+- (void)initAvatarView {
     [self.avatarImageView setContentMode:UIViewContentModeScaleAspectFill];
     
     // 设置layer对象的圆角半径。将方形图像变成圆形图像，半径应设置为UIImageView宽度的一半。
     self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2;
     // 必须将clipsToBounds属性设置为YES，layer才能生效。
     self.avatarImageView.clipsToBounds = YES;
-    
-    //设置边框的宽度和边框颜色
-    self.avatarImageView.layer.borderWidth = 3.0f;
-    self.avatarImageView.layer.borderColor = [UIColor grayColor].CGColor;
 }
 
 #pragma mark - action
 - (IBAction)nextBtnClick:(UIBarButtonItem *)sender {
     [_nameField resignFirstResponder];
     
-    if ([_nameField.text length] == 0) {
-        _nameField.backgroundColor = [UIColor redColor];
-        return;
-    } else if ([_genderLabel.text length] == 0) {
-        _genderLabel.backgroundColor = [UIColor redColor];
-        return;
-    } else if ([_highestDegreeLabel.text length] == 0) {
-        _highestDegreeLabel.backgroundColor = [UIColor redColor];
-        return;
-    } else if ([_graduateTimeLabel.text length] == 0) {
-        _graduateTimeLabel.backgroundColor = [UIColor redColor];
-        return;
-    }
-    
-    UniversityInfoViewController *universityController = [ControllerManager viewControllerInSettingStoryboard:@"UniversityInfoViewController"];
-    universityController.highestDegree = _highestDegree;
-    universityController.currentDegree = _highestDegree;
-    
-    [self.navigationController pushViewController:universityController animated:YES];
+    _remindAlert = [[UIAlertView alloc] initWithTitle:@"请认真填写后面的资料" message:@"1、个人资料填写后将不能更改\n2、系统将依据你的资料为你推荐校友人脉" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [_remindAlert show];
 }
 
-- (void)chooseEditAvatar {
-    UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"取消"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"拍照", @"从相册中选取", nil];
-    [choiceSheet showInView:self.view];
-}
-
-- (void)changeGender {
+- (IBAction)changeGender:(UIButton *)sender {
     [_nameField resignFirstResponder];
     
     if (!_genderPickerView) {
         NSArray *genderData = @[[GenderInfo genderName:Male], [GenderInfo genderName:Female]];
-
+        
         _genderPickerDelegate = [[SingerPickerViewDelegate alloc] initWithData:genderData delegate:self];
         _genderPickerView = [[PickerView alloc]initWithDelegate:_genderPickerDelegate withDataSource:_genderPickerDelegate];
     }
@@ -140,7 +108,7 @@
     [_genderPickerView showInView:self.view withBlur:YES];
 }
 
-- (void)changeHighestDegree {
+- (IBAction)changeHighestDegree:(UIButton *)sender {
     [_nameField resignFirstResponder];
     
     if (!_degreePickerView) {
@@ -152,7 +120,7 @@
     [_degreePickerView showInView:self.view withBlur:YES];
 }
 
-- (void)changeGraduate {
+- (IBAction)changeGraduateTime:(UIButton *)sender {
     [_nameField resignFirstResponder];
     
     if (!_datePicker) {
@@ -162,6 +130,43 @@
     NSDate *date = [NSDate date];
     [_datePicker setDate:date withMode:UIDatePickerModeDate];
     [_datePicker showInView:self.view withBlur:YES];
+}
+
+- (IBAction)textFieldDidChange:(id)sender {
+    [self validateInput];
+}
+
+- (void)labelDidChange {
+    [self validateInput];
+}
+
+- (void)validateInput {
+    if ([[_nameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        return;
+    }
+    
+    if ([[_genderLabel.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        return;
+    }
+    
+    if ([[_highestDegreeLabel.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        return;
+    }
+    
+    if ([[_graduateTimeLabel.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        return;
+    }
+    
+    [self.nextBtn setEnabled:YES];
+}
+
+- (void)chooseEditAvatar {
+    UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"取消"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"拍照", @"从相册中选取", nil];
+    [choiceSheet showInView:self.view];
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -188,7 +193,8 @@
                 //camera presented
             }];
         } else {
-            NSLog(@"Camera is not available.");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"更改头像" message:@"相机不可用" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
         }
     } else if (buttonIndex == 1) {
         //从相册中选取
@@ -206,7 +212,8 @@
                 //image picker presented
             }];
         } else {
-            NSLog(@"Photo library is not available.");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"更改头像" message:@"相册不可用" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
         }
     }
 }
@@ -260,17 +267,36 @@
         _highestDegree = [DegreeInfo degree:pickedValue];
         self.highestDegreeLabel.text = pickedValue;
     }
+    
+    [self labelDidChange];
 }
 
 #pragma mark - DatePickerDelegate
 - (void)onDatePickDone:(id)sender date:(NSDate *)date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
+    [dateFormatter setDateFormat:@"yyyy年MM月"];
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
     dateFormatter.locale = locale;
     NSString *dateString = [dateFormatter stringFromDate:date];
     
     self.graduateTimeLabel.text = dateString;
+    
+    [self labelDidChange];
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (_remindAlert == alertView) {
+        if (buttonIndex == _remindAlert.cancelButtonIndex) {
+            UniversityInfoViewController *universityController = [ControllerManager viewControllerInSettingStoryboard:@"UniversityInfoViewController"];
+            universityController.highestDegree = _highestDegree;
+            universityController.currentDegree = _highestDegree;
+            
+            [self.navigationController pushViewController:universityController animated:YES];
+        }
+        
+        
+    }
 }
 
 @end

@@ -13,6 +13,7 @@
 @interface AddPasswordViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *nextBtn;
 
 - (IBAction)backBtnClick:(UIBarButtonItem *)sender;
 - (IBAction)nextBtnClick:(UIBarButtonItem *)sender;
@@ -24,10 +25,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self.nextBtn setEnabled:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [[KeyboardHelper helper] setViewToKeyboardHelper:_passwordField withShouldOffsetView:self.view];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLoginResult:) name:kLoginNotification object:nil];
 }
@@ -50,31 +55,34 @@
 }
 
 #pragma mark - action
-- (IBAction)nextBtnClick:(UIBarButtonItem *)sender {
-    [_passwordField resignFirstResponder];
-    
-    if ([_passwordField.text length] == 0) {
-        NSLog(@"密码不能为空！");
-        _passwordField.backgroundColor = [UIColor redColor];
+- (IBAction)textFieldDidChange:(id)sender {
+    if ([[_passwordField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
         return;
     }
     
-    NSLog(@"注册用户 - 手机号码：%@, 密码：%@", _mobile, _passwordField.text);
+    [self.nextBtn setEnabled:YES];
+}
+
+- (IBAction)nextBtnClick:(UIBarButtonItem *)sender {
+    [_passwordField resignFirstResponder];
     
     [[AppModel sharedInstance].loginModel login:self.mobile password:_passwordField.text];
+    [self showProgress];
 }
 
 #pragma mark - Notification
 - (void)onLoginResult:(NSNotification *)notification {
+    [self hideProgress];
+    
     NSInteger result = [[notification.userInfo valueForKey:kLoginResult] integerValue];
     
     if (result == LoginSuccess) {
-        NSLog(@"登录成功");
+        NSLog(@"登录成功：%@", self.mobile);
         
         BasicProfileViewController *profileController = [ControllerManager viewControllerInSettingStoryboard:@"BasicProfileViewController"];
         [self.navigationController pushViewController:profileController animated:YES];
     } else {
-        NSLog(@"登录失败");
+        [self showHUDText:@"登录失败" type:Fail];
     }
 }
 @end

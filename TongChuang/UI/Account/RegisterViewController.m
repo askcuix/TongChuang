@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *mobileField;
 @property (weak, nonatomic) IBOutlet UITextField *verifyCodeField;
 @property (weak, nonatomic) IBOutlet UIButton *sendVerifyCodeBtn;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *nextBtn;
 
 - (IBAction)sendVerifyCode:(UIButton *)sender;
 - (IBAction)backBtnClick:(UIBarButtonItem *)sender;
@@ -34,6 +35,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self.nextBtn setEnabled:NO];
     
     [self.sendVerifyCodeBtn setBorderWidth:1];
     [self.sendVerifyCodeBtn setBorderColor:UIColorHex(@"#46a5e3")];
@@ -57,6 +60,16 @@
 }
 
 #pragma mark - Action
+- (IBAction)textFieldDidChange:(id)sender {
+    if ([_mobileField.text length] == 0) {
+        return;
+    } else if ([_verifyCodeField.text length] == 0) {
+        return;
+    }
+    
+    [self.nextBtn setEnabled:YES];
+}
+
 - (IBAction)sendVerifyCode:(UIButton *)sender {
     [_mobileField resignFirstResponder];
     
@@ -92,7 +105,7 @@
     }else{
         timerPause = false;
         [self.sendVerifyCodeBtn setUserInteractionEnabled:NO];
-        [self.sendVerifyCodeBtn setTitle:[NSString stringWithFormat:@"%lds后重新发送", _resendSmsSec] forState:UIControlStateNormal];
+        [self.sendVerifyCodeBtn setTitle:[NSString stringWithFormat:@"%ds后重新发送", _resendSmsSec] forState:UIControlStateNormal];
     }
 }
 
@@ -120,14 +133,8 @@
     [_mobileField resignFirstResponder];
     [_verifyCodeField resignFirstResponder];
     
-    if ([_mobileField.text length] == 0) {
-        [self showHUDText:@"手机号不能为空" type:Fail];
-        return;
-    } else if (![ValidateUtil validatePhoneNum:_mobileField.text]) {
+    if (![ValidateUtil validatePhoneNum:_mobileField.text]) {
         [self showHUDText:@"手机号格式不正确" type:Fail];
-        return;
-    } else if ([_verifyCodeField.text length] == 0) {
-        [self showHUDText:@"验证码不能为空" type:Fail];
         return;
     }
     
