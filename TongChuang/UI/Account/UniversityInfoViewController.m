@@ -7,6 +7,8 @@
 //
 
 #import "UniversityInfoViewController.h"
+#import "UIView+Extension.h"
+#import "KeyboardHelper.h"
 #import "HighSchoolInfoViewController.h"
 #import "SingerPickerViewDelegate.h"
 
@@ -19,17 +21,21 @@
     PickerView *_startTimePickerView;
 }
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *hintLabel;
 @property (weak, nonatomic) IBOutlet UILabel *schoolLabel;
 @property (weak, nonatomic) IBOutlet UILabel *universityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *majorLabel;
 @property (weak, nonatomic) IBOutlet UITextField *classField;
 @property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *nextBtn;
+
 - (IBAction)backBtnClick:(UIBarButtonItem *)sender;
-- (IBAction)nextBtnClick:(UIBarButtonItem *)sender;
-- (IBAction)jumpBtnClick:(UIButton *)sender;
+- (IBAction)jumpBtnClick:(UIBarButtonItem *)sender;
+- (IBAction)nextBtnClick:(UIButton *)sender;
+
+- (IBAction)changeSchool:(UIButton *)sender;
+- (IBAction)changeMajor:(UIButton *)sender;
+- (IBAction)changeStartTime:(UIButton *)sender;
 
 @end
 
@@ -40,27 +46,19 @@
     // Do any additional setup after loading the view.
     
     //设置标题信息
-    NSString *titleInfo = [NSString stringWithFormat:@"填写学校资料（已完成%ld/%ld）", [DegreeInfo currentStep:self.currentDegree HighestDegree:self.highestDegree], [DegreeInfo stepCount:self.highestDegree]];
-    _titleLabel.text = titleInfo;
-    NSString *titleHintInfo = [NSString stringWithFormat:@"（系统将自动为你寻找%@同窗）", [DegreeInfo degreeName:self.currentDegree]];
-    _hintLabel.text = titleHintInfo;
-    NSString *schoolInfo = [NSString stringWithFormat:@"%@就读学校", [DegreeInfo degreeName:self.currentDegree]];
-    _schoolLabel.text = schoolInfo;
+    self.title = [NSString stringWithFormat:@"(%d/%d)填写学校资料", [DegreeInfo currentStep:self.currentDegree HighestDegree:self.highestDegree], [DegreeInfo stepCount:self.highestDegree]];
     
-    //更改学校
-    [self.universityLabel setUserInteractionEnabled:YES];
-    UITapGestureRecognizer *schoolGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeSchool)];
-    [self.universityLabel addGestureRecognizer:schoolGesture];
+    //设置学历
+    _schoolLabel.text = [DegreeInfo degreeName:self.currentDegree];
     
-    //更改专业
-    [self.majorLabel setUserInteractionEnabled:YES];
-    UITapGestureRecognizer *majorGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeMajor)];
-    [self.majorLabel addGestureRecognizer:majorGesture];
+    //设置下一步按钮
+    [self.nextBtn setCornerRadius:4 maskToBounds:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    //更改入学时间
-    [self.startTimeLabel setUserInteractionEnabled:YES];
-    UITapGestureRecognizer *startTimeGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeStartTime)];
-    [self.startTimeLabel addGestureRecognizer:startTimeGesture];
+    [[KeyboardHelper helper] setViewToKeyboardHelper:_classField withShouldOffsetView:self.view];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,14 +71,34 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)nextBtnClick:(UIBarButtonItem *)sender {
+- (IBAction)jumpBtnClick:(UIBarButtonItem *)sender {
     [_classField resignFirstResponder];
     
     [self nextStep];
 }
 
-- (IBAction)jumpBtnClick:(UIButton *)sender {
+- (IBAction)nextBtnClick:(UIButton *)sender {
     [_classField resignFirstResponder];
+    
+    if ([self.universityLabel.text length] == 0) {
+        [self showHUDText:@"学校不能为空" type:Fail];
+        return;
+    }
+    
+    if ([self.majorLabel.text length] == 0) {
+        [self showHUDText:@"专业不能为空" type:Fail];
+        return;
+    }
+    
+    if ([[self.classField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        [self showHUDText:@"班级不能为空" type:Fail];
+        return;
+    }
+    
+    if ([self.startTimeLabel.text length] == 0) {
+        [self showHUDText:@"入学时间不能为空" type:Fail];
+        return;
+    }
     
     [self nextStep];
 }
@@ -100,7 +118,7 @@
     }
 }
 
-- (void)changeSchool {
+- (IBAction)changeSchool:(UIButton *)sender {
     [_classField resignFirstResponder];
     
     if (!_schoolPickerView) {
@@ -112,7 +130,7 @@
     [_schoolPickerView showInView:self.view withBlur:YES];
 }
 
-- (void)changeMajor {
+- (IBAction)changeMajor:(UIButton *)sender {
     [_classField resignFirstResponder];
     
     if (!_majorPickerView) {
@@ -124,7 +142,7 @@
     [_majorPickerView showInView:self.view withBlur:YES];
 }
 
-- (void)changeStartTime {
+- (IBAction)changeStartTime:(UIButton *)sender {
     [_classField resignFirstResponder];
     
     if (!_startTimePickerView) {

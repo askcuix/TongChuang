@@ -10,6 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CommonDefs.h"
 #import "CommonTypes.h"
+#import "UIView+Extension.h"
 #import "AppModel.h"
 #import "CameraUtil.h"
 #import "AvatarUtil.h"
@@ -81,10 +82,7 @@
 - (void)initAvatarView {
     [self.avatarImageView setContentMode:UIViewContentModeScaleAspectFill];
     
-    // 设置layer对象的圆角半径。将方形图像变成圆形图像，半径应设置为UIImageView宽度的一半。
-    self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2;
-    // 必须将clipsToBounds属性设置为YES，layer才能生效。
-    self.avatarImageView.clipsToBounds = YES;
+    [self.avatarImageView setCornerRadius:(self.avatarImageView.width / 2) maskToBounds:YES];
 }
 
 #pragma mark - action

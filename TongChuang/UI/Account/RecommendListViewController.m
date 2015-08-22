@@ -7,7 +7,10 @@
 //
 
 #import "RecommendListViewController.h"
+#import "UIView+Extension.h"
+#import "UIColor+Extension.h"
 #import "ControllerManager.h"
+#import "AppModel.h"
 #import "RecommendGroupTableCell.h"
 #import "RecommendCircleTableCell.h"
 #import "RecommendPersonTableCell.h"
@@ -36,10 +39,12 @@ static NSString *RecommendPersonTableIdentifier = @"RecommendPersonTableViewCell
     
     // Do any additional setup after loading the view.
     _groupList = [NSMutableArray array];
-    for (int i = 1; i < 4; i++) {
+    for (int i = 1; i < 2; i++) {
         GroupInfo *groupInfo = [[GroupInfo alloc] init];
         groupInfo.gid = i;
-        groupInfo.name = [NSString stringWithFormat:@"同学群%d", i];
+        groupInfo.name = [NSString stringWithFormat:@"广东财经大学 法律"];
+        groupInfo.info = [NSString stringWithFormat:@"2014级3班"];
+        groupInfo.degree = Bachelor;
         [_groupList addObject:groupInfo];
     }
     
@@ -47,19 +52,15 @@ static NSString *RecommendPersonTableIdentifier = @"RecommendPersonTableViewCell
     for (int i = 1; i < 6; i++) {
         CircleInfo *circleInfo = [[CircleInfo alloc] init];
         circleInfo.cid = i;
-        circleInfo.name = [NSString stringWithFormat:@"圈子%d", i];
+        circleInfo.name = [NSString stringWithFormat:@"广东财经大学 法律"];
+        circleInfo.info = @"2014级圈子";
+        circleInfo.degree = Master;
         [_circleList addObject:circleInfo];
     }
     
-    _personList = [NSMutableArray array];
-    for (int i = 1; i < 11; i++) {
-        UserInfo *person = [[UserInfo alloc] init];
-        person.uid = i;
-        person.name = [NSString stringWithFormat:@"同学%d", i];
-        person.avatarUrl = @"http://photo.l99.com/bigger/31/1363231021567_5zu910.jpg";
-        person.schoolName = [NSString stringWithFormat:@"学校%d", i];
-        [_personList addObject:person];
-    }
+    [[AppModel sharedInstance].userModel getFriendsWithBlock:^(NSArray *objects, NSError *error) {
+        _personList = [objects mutableCopy];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -97,39 +98,67 @@ static NSString *RecommendPersonTableIdentifier = @"RecommendPersonTableViewCell
         GroupInfo *groupInfo = _groupList[indexPath.row];
         RecommendGroupTableCell *groupCell = [tableView dequeueReusableCellWithIdentifier:RecommendGroupTableIdentifier];
         [groupCell setGroupInfo:groupInfo];
+        [groupCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
         return groupCell;
     } else if (indexPath.section == 1) {
         CircleInfo *circleInfo = _circleList[indexPath.row];
         RecommendCircleTableCell *circleCell = [tableView dequeueReusableCellWithIdentifier:RecommendCircleTableIdentifier];
         [circleCell setCircleInfo:circleInfo];
+        [circleCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
         return circleCell;
     }
     
     UserInfo *person = _personList[indexPath.row];
     RecommendPersonTableCell *personCell = [tableView dequeueReusableCellWithIdentifier:RecommendPersonTableIdentifier];
     [personCell setPersonInfo:person];
+    [personCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     return personCell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     // 设置section的背景色
-    view.tintColor = [UIColor lightGrayColor];
+    view.tintColor = UIColorHex(@"#f5f5f5");
     
     // 设置section文字颜色
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-    [header.textLabel setTextColor:[UIColor darkGrayColor]];
+    [header.textLabel setTextColor:UIColorHex(@"#5b5b5b")];
+    [header.textLabel setFont:[UIFont systemFontOfSize:13]];
+    
+    if (section == 2) {
+        if ([_personList count] > 0) {
+            UIButton *addAllBtn = [[UIButton alloc] initWithFrame:CGRectMake(tableView.width - 65 - 15, 8, 65, 25)];
+            
+            [addAllBtn setBorderWidth:1];
+            [addAllBtn setBorderColor:UIColorHex(@"#a1a1a1")];
+            [addAllBtn setCornerRadius:4 maskToBounds:YES];
+            [addAllBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:13]];
+            [addAllBtn setTitle:@"一键添加" forState:UIControlStateNormal];
+            [addAllBtn setTitleColor:UIColorHex(@"#46a5e3") forState:UIControlStateNormal];
+            [addAllBtn addTarget:self action:@selector(addAllRecommendPerson) forControlEvents:UIControlEventTouchUpInside];
+            
+            [header.textLabel setFrame:CGRectMake(15, 22, tableView.width - addAllBtn.width - 15 - 15 * 2, [self tableView:tableView heightForHeaderInSection:section] - 22)];
+            
+            [header addSubview:addAllBtn];
+        } else {
+            [header.textLabel setFrame:CGRectMake(15, 22, tableView.width - 15 * 2, [self tableView:tableView heightForHeaderInSection:section] - 22)];
+        }
+    } else {
+        [header.textLabel setFrame:CGRectMake(15, 7, tableView.width - 15 * 2, [self tableView:tableView heightForHeaderInSection:section] - 7)];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 20;
+    if (section == 2) {
+        return 40;
+    }
+    return 25;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 2) {
-        return 80;
-    }
-    
-    return 50;
+    return 65;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -141,5 +170,9 @@ static NSString *RecommendPersonTableIdentifier = @"RecommendPersonTableViewCell
     [self dismissViewControllerAnimated:YES completion:^{
         [[ControllerManager sharedInstance] presentMainView];
     }];
+}
+
+- (void) addAllRecommendPerson {
+    
 }
 @end

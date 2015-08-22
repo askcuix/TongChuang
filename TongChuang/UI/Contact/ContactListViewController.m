@@ -9,6 +9,7 @@
 #import "ContactListViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <JSBadgeView/JSBadgeView.h>
+#import "UIColor+Extension.h"
 #import "NewContactTableViewCell.h"
 #import "ContactTableCell.h"
 #import "AppModel.h"
@@ -63,7 +64,7 @@
 
 - (void)refreshView {
     if (_badgeNumber > 0) {
-        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", _badgeNumber];
+        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", (long)_badgeNumber];
     } else {
         self.tabBarItem.badgeValue = nil;
     }
@@ -238,20 +239,23 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return 0;
+        return 13;
     }
     
-    return 20;
+    return 25;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        return 50;
+    } else {
+        return 65;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         NewContactTableViewCell *cell = [NewContactTableViewCell createOrDequeueCellByTableView:tableView];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        
-        [cell.iconImgView setImage:[UIImage imageNamed:@"new_friends_icon"]];
-        [cell.titleLabel setText:@"新的人脉"];
         
         if (_badgeView) {
             [_badgeView removeFromSuperview];
@@ -259,7 +263,7 @@
         
         if (_badgeNumber > 0) {
             _badgeView = [[JSBadgeView alloc] initWithParentView:cell.iconImgView alignment:JSBadgeViewAlignmentTopRight];
-            _badgeView.badgeText = [NSString stringWithFormat:@"%ld", _badgeNumber];
+            _badgeView.badgeText = [NSString stringWithFormat:@"%ld", (long)_badgeNumber];
         }
         
         return cell;
@@ -300,9 +304,12 @@
     if (section == 0) {
         view = nil;
     } else {
+        // 设置section的背景色
+        view.tintColor = UIColorHex(@"#f5f5f5");
+        
         UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-        header.textLabel.font = [UIFont systemFontOfSize:12];
-        header.textLabel.textColor = [UIColor darkGrayColor];
+        header.textLabel.font = [UIFont systemFontOfSize:13];
+        header.textLabel.textColor = UIColorHex(@"#5b5b5b");
     }
 }
 
@@ -332,7 +339,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"确定删除吗？" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定删除吗？" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
         alertView.tag = indexPath.row;
         [alertView show];
     }

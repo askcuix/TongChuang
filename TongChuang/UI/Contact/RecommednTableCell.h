@@ -21,6 +21,4 @@
 
 + (RecommednTableCell *)createOrDequeueCellByTableView:(UITableView *)tableView;
 
-- (void)setRoundStyle;
-
 @end

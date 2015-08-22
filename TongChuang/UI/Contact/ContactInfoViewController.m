@@ -8,6 +8,8 @@
 
 #import "ContactInfoViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "UIView+Extension.h"
+#import "UIColor+Extension.h"
 #import "AppModel.h"
 #import "ChatPushManager.h"
 
@@ -31,15 +33,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"同窗资料";
+    
+    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleBordered target:self action:@selector(backBtnClick:)];
+    backBtn.tintColor = UIColorHex(@"#46a5e3");
+    [self.navigationItem setLeftBarButtonItem:backBtn];
+    
     self.highestDegreeLabel.text = @"就读学校";
     
-    // 设置layer对象的圆角半径。将方形图像变成圆形图像，半径应设置为UIImageView宽度的一半。
-    self.avatarImgView.layer.cornerRadius = self.avatarImgView.frame.size.width / 2;
-    // 必须将clipsToBounds属性设置为YES，layer才能生效。
-    self.avatarImgView.clipsToBounds = YES;
-    
-    self.actionBtn.layer.cornerRadius = 5;
-    self.actionBtn.layer.masksToBounds = YES;
+    [self.avatarImgView setCornerRadius:(self.avatarImgView.width / 2) maskToBounds:YES];
+    [self.actionBtn setCornerRadius:4 maskToBounds:YES];
     
     [self initView];
 }
@@ -114,6 +116,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - action
+- (IBAction)backBtnClick:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)goChat:(id)sender {
     
 }
@@ -132,7 +139,7 @@
             [weakSelf showProgress];
             
             NSString *text = [NSString stringWithFormat:@"%@ 申请加你为好友", [[AppModel sharedInstance].loginModel account]];
-            [[ChatPushManager manager] pushMessage:text userIds:@[[NSString stringWithFormat:@"%ld", _user.uid]] block:^(BOOL succeeded, NSError *error) {
+            [[ChatPushManager manager] pushMessage:text userIds:@[[NSString stringWithFormat:@"%ld", (long)_user.uid]] block:^(BOOL succeeded, NSError *error) {
                 [weakSelf hideProgress];
                 
                 if (error) {

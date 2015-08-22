@@ -7,12 +7,18 @@
 //
 
 #import "RecommendGroupTableCell.h"
+#import "UIView+Extension.h"
 
 @interface RecommendGroupTableCell () {
     GroupInfo *_groupInfo;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *degreeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *lookBtn;
+
 
 - (IBAction)lookBtnClick:(UIButton *)sender;
 
@@ -32,6 +38,9 @@
 
 #pragma mark - view
 - (void)setGroupInfo:(GroupInfo *)groupInfo {
+    [self.degreeLabel setCornerRadius:2 maskToBounds:YES];
+    [self.lookBtn setCornerRadius:6 maskToBounds:YES];
+    
     if (!groupInfo) {
         return;
     }
@@ -41,6 +50,12 @@
     if ([_groupInfo.name length] > 0) {
         _nameLabel.text = _groupInfo.name;
     }
+    
+    if ([_groupInfo.info length] > 0) {
+        _detailLabel.text = _groupInfo.info;
+    }
+    
+    _degreeLabel.text = [DegreeInfo simpleDegreeName:_groupInfo.degree];
 }
 
 #pragma mark - action

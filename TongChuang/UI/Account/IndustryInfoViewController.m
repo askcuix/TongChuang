@@ -7,6 +7,7 @@
 //
 
 #import "IndustryInfoViewController.h"
+#import "UIView+Extension.h"
 #import "SingerPickerViewDelegate.h"
 #import "DoublePickerViewDelegate.h"
 #import "ControllerManager.h"
@@ -24,9 +25,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentLocLabel;
 @property (weak, nonatomic) IBOutlet UILabel *industryLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *nextBtn;
+
 - (IBAction)backBtnClick:(UIBarButtonItem *)sender;
-- (IBAction)nextBtnClick:(UIBarButtonItem *)sender;
-- (IBAction)jumpBtnClick:(UIButton *)sender;
+- (IBAction)nextBtnClick:(UIButton *)sender;
+
+- (IBAction)changeNativeLocation:(UIButton *)sender;
+- (IBAction)changeCurrentLocation:(UIButton *)sender;
+- (IBAction)changeIndustry:(UIButton *)sender;
+
 
 @end
 
@@ -36,20 +43,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    //更改行业
-    [self.industryLabel setUserInteractionEnabled:YES];
-    UITapGestureRecognizer *industryGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeIndustry)];
-    [self.industryLabel addGestureRecognizer:industryGesture];
+    //设置标题信息
+    self.title = [NSString stringWithFormat:@"(%d/%d)填写资料", [DegreeInfo stepCount:self.highestDegree], [DegreeInfo stepCount:self.highestDegree]];
     
-    //更改籍贯
-    [self.nativeLocLabel setUserInteractionEnabled:YES];
-    UITapGestureRecognizer *nativeLocGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeNativeLocation)];
-    [self.nativeLocLabel addGestureRecognizer:nativeLocGesture];
-    
-    //更改当前所在地
-    [self.currentLocLabel setUserInteractionEnabled:YES];
-    UITapGestureRecognizer *currentLocGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeCurrentLocation)];
-    [self.currentLocLabel addGestureRecognizer:currentLocGesture];
+    //设置下一步按钮
+    [self.nextBtn setCornerRadius:4 maskToBounds:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,30 +60,32 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)nextBtnClick:(UIBarButtonItem *)sender {
-    [self nextStep];
-}
-
-- (IBAction)jumpBtnClick:(UIButton *)sender {
+- (IBAction)nextBtnClick:(UIButton *)sender {
+    if ([self.nativeLocLabel.text length] == 0) {
+        [self showHUDText:@"籍贯不能为空" type:Fail];
+        return;
+    }
+    
+    if ([self.currentLocLabel.text length] == 0) {
+        [self showHUDText:@"所在地不能为空" type:Fail];
+        return;
+    }
+    
+    if ([self.industryLabel.text length] == 0) {
+        [self showHUDText:@"行业不能为空" type:Fail];
+        return;
+    }
+    
     [self nextStep];
 }
 
 - (void)nextStep {
     MatchFriendsViewController *matchController = [ControllerManager viewControllerInSettingStoryboard:@"MatchFriendsViewController"];
+    
     [self.navigationController pushViewController:matchController animated:YES];
 }
 
-- (void)changeIndustry {
-    if (!_industryPickerView) {
-        NSArray *industryData = @[@"互联网", @"法律", @"金融"];
-        _industryPickerDelegate = [[SingerPickerViewDelegate alloc] initWithData:industryData delegate:self];
-        _industryPickerView = [[PickerView alloc] initWithDelegate:_industryPickerDelegate withDataSource:_industryPickerDelegate];
-    }
-    
-    [_industryPickerView showInView:self.view withBlur:YES];
-}
-
-- (void)changeNativeLocation {
+- (IBAction)changeNativeLocation:(UIButton *)sender {
     if (!_nativeLocPickerView) {
         NSDictionary *locationData = @{@"广东" : @[@"深圳", @"广州", @"珠海"],
                                        @"湖南" : @[@"长沙", @"湘潭", @"株洲"],
@@ -97,7 +97,7 @@
     [_nativeLocPickerView showInView:self.view withBlur:YES];
 }
 
-- (void)changeCurrentLocation {
+- (IBAction)changeCurrentLocation:(UIButton *)sender {
     if (!_currentLocPickerView) {
         NSDictionary *locationData = @{@"广东" : @[@"深圳", @"广州", @"珠海"],
                                        @"湖南" : @[@"长沙", @"湘潭", @"株洲"],
@@ -107,6 +107,16 @@
     }
     
     [_currentLocPickerView showInView:self.view withBlur:YES];
+}
+
+- (IBAction)changeIndustry:(UIButton *)sender {
+    if (!_industryPickerView) {
+        NSArray *industryData = @[@"互联网", @"法律", @"金融"];
+        _industryPickerDelegate = [[SingerPickerViewDelegate alloc] initWithData:industryData delegate:self];
+        _industryPickerView = [[PickerView alloc] initWithDelegate:_industryPickerDelegate withDataSource:_industryPickerDelegate];
+    }
+    
+    [_industryPickerView showInView:self.view withBlur:YES];
 }
 
 #pragma mark - SingerPickerDelegate

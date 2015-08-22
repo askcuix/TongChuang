@@ -65,7 +65,7 @@
         [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
          setTitleTextAttributes:@{
                                   NSForegroundColorAttributeName:UIColorHex(@"#a5a7aa"),
-                                  NSFontAttributeName:[UIFont systemFontOfSize:17]
+                                  NSFontAttributeName:[UIFont systemFontOfSize:15]
                                   }
          forState:UIControlStateDisabled];
         
@@ -113,14 +113,14 @@
         
         ServiceSearchViewController *serviceController = [ControllerManager viewControllerInMainStoryboard:@"ServiceSearchViewController"];
         serviceController.title=@"发现";
-        [ViewUtil setNormalTabItem:serviceController imageName:@"service_normal.png"];
-        [ViewUtil setSelectedTabItem:serviceController imageName:@"service_press.png"];
+        [ViewUtil setNormalTabItem:serviceController imageName:@"discover_normal.png"];
+        [ViewUtil setSelectedTabItem:serviceController imageName:@"discover_press.png"];
         [ViewUtil addTabItemController:serviceController toTabBarController:_mainController];
         
         MyPreferenceViewController *preferenceController = [ControllerManager viewControllerInMainStoryboard:@"MyPreferenceViewController"];
         preferenceController.title=@"我";
-        [ViewUtil setNormalTabItem:preferenceController imageName:@"profile_normal.png"];
-        [ViewUtil setSelectedTabItem:preferenceController imageName:@"profile_press.png"];
+        [ViewUtil setNormalTabItem:preferenceController imageName:@"me_normal.png"];
+        [ViewUtil setSelectedTabItem:preferenceController imageName:@"me_press.png"];
         [ViewUtil addTabItemController:preferenceController toTabBarController:_mainController];
     }
     

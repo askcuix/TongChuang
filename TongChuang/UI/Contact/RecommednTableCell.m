@@ -29,18 +29,6 @@
     // Configure the view for the selected state
 }
 
-- (void)setRoundStyle {
-    [self.avatarImgView setContentMode:UIViewContentModeScaleAspectFill];
-    
-    // 设置layer对象的圆角半径。将方形图像变成圆形图像，半径应设置为UIImageView宽度的一半。
-    self.avatarImgView.layer.cornerRadius = self.avatarImgView.frame.size.width / 2;
-    // 必须将clipsToBounds属性设置为YES，layer才能生效。
-    self.avatarImgView.clipsToBounds = YES;
-    
-    self.actionBtn.layer.cornerRadius = 5;
-    self.actionBtn.layer.masksToBounds = YES;
-}
-
 + (NSString *)identifier {
     return NSStringFromClass([RecommednTableCell class]);
 }

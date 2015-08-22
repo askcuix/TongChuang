@@ -11,4 +11,6 @@
 
 @interface IndustryInfoViewController : BaseViewController
 
+@property (nonatomic, assign) DegreeType highestDegree;
+
 @end

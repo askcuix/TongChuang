@@ -8,6 +8,8 @@
 
 #import "NewContactViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "UIView+Extension.h"
+#import "UIColor+Extension.h"
 #import "AppModel.h"
 #import "RecommednTableCell.h"
 #import "ChatPushManager.h"
@@ -26,6 +28,9 @@
     // Do any additional setup after loading the view.
     
     self.title = @"新的人脉";
+    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleBordered target:self action:@selector(backBtnClick:)];
+    backBtn.tintColor = UIColorHex(@"#46a5e3");
+    [self.navigationItem setLeftBarButtonItem:backBtn];
     
     [RecommednTableCell registerCellToTableView:self.tableView];
     
@@ -97,13 +102,20 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 20;
+    return 25;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    // 设置section的背景色
+    view.tintColor = UIColorHex(@"#f5f5f5");
+    
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-    header.textLabel.font = [UIFont systemFontOfSize:12];
-    header.textLabel.textColor = [UIColor darkGrayColor];
+    header.textLabel.font = [UIFont systemFontOfSize:13];
+    header.textLabel.textColor = UIColorHex(@"#5b5b5b");
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 65;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -111,19 +123,27 @@
     
     RecommednTableCell *cell = [RecommednTableCell createOrDequeueCellByTableView:tableView];
     [cell.avatarImgView sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
+    [cell.avatarImgView setCornerRadius:(cell.avatarImgView.width / 2) maskToBounds:YES];
     [cell.nameLabel setText:user.name];
     [cell.detailLabel setText:user.schoolName];
-    [cell setRoundStyle];
+    [cell.actionBtn setCornerRadius:6 maskToBounds:YES];
     [cell.actionBtn setTag:user.uid];
     [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
     
     if (indexPath.row < 3) {
         [cell.actionBtn setTitle:@"接受" forState:UIControlStateNormal];
-        [cell.actionBtn setBackgroundColor:[UIColor blueColor]];
+        [cell.actionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [cell.actionBtn setBackgroundColor:UIColorHex(@"#46a5e3")];
+        [cell.actionBtn setBorderWidth:0];
+        
         [cell.actionBtn addTarget:self action:@selector(acceptBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     } else {
         [cell.actionBtn setTitle:@"添加" forState:UIControlStateNormal];
-        [cell.actionBtn setBackgroundColor:[UIColor lightGrayColor]];
+        [cell.actionBtn setTitleColor:UIColorHex(@"#434343") forState:UIControlStateNormal];
+        [cell.actionBtn setBackgroundColor:UIColorHex(@"#f3f3f3")];
+        [cell.actionBtn setBorderWidth:1];
+        [cell.actionBtn setBorderColor:UIColorHex(@"#e8e8e8")];
+        
         [cell.actionBtn addTarget:self action:@selector(addBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -139,6 +159,10 @@
 }
 
 #pragma mark - action
+- (IBAction)backBtnClick:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)acceptBtnClick:(id)sender {
     UIButton *btn = (UIButton *)sender;
     
@@ -152,7 +176,7 @@
             [weakSelf toast:@"添加好友失败"];
         } else {
             [weakSelf showProgress];
-            [[ChatManager manager] sendWelcomeMessageToOther:[NSString stringWithFormat:@"%ld", btn.tag] text:@"我们已经是好友了，来聊天吧" block:^(BOOL succeeded, NSError *error) {
+            [[ChatManager manager] sendWelcomeMessageToOther:[NSString stringWithFormat:@"%ld", (long)btn.tag] text:@"我们已经是好友了，来聊天吧" block:^(BOOL succeeded, NSError *error) {
                 [weakSelf hideProgress];
                 [weakSelf toast:@"添加成功"];
                 [weakSelf refresh:nil];
@@ -177,7 +201,7 @@
             [weakSelf showProgress];
             
             NSString *text = [NSString stringWithFormat:@"%@ 申请加你为好友", [[AppModel sharedInstance].loginModel account]];
-            [[ChatPushManager manager] pushMessage:text userIds:@[[NSString stringWithFormat:@"%ld", btn.tag]] block:^(BOOL succeeded, NSError *error) {
+            [[ChatPushManager manager] pushMessage:text userIds:@[[NSString stringWithFormat:@"%ld", (long)btn.tag]] block:^(BOOL succeeded, NSError *error) {
                 [weakSelf hideProgress];
                 
                 if (error) {

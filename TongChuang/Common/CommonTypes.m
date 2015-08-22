@@ -38,6 +38,19 @@
     }
 }
 
++ (NSString *)simpleDegreeName:(DegreeType)degreeType {
+    switch (degreeType) {
+        case Doctor:
+            return @"博";
+            break;
+        case Master:
+            return @"硕";
+            break;
+        case Bachelor:
+            return @"本";
+    }
+}
+
 + (NSUInteger)degree:(NSString *)degreeName {
     if ([degreeName isEqualToString:@"博士"]) {
         return Doctor;

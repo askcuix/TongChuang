@@ -28,6 +28,7 @@ typedef NS_ENUM(NSUInteger, DegreeType) {
 @interface DegreeInfo : NSObject
 
 + (NSString *)degreeName:(DegreeType)degreeType;
++ (NSString *)simpleDegreeName:(DegreeType)degreeType;
 + (NSUInteger)degree:(NSString *)degreeName;
 + (NSInteger)stepCount:(DegreeType)highestDegree;
 + (NSInteger)currentStep:(NSInteger)currentDegree HighestDegree:(DegreeType)highestDegree;
@@ -38,6 +39,8 @@ typedef NS_ENUM(NSUInteger, DegreeType) {
 
 @property (nonatomic, assign) NSInteger gid;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *info;
+@property (nonatomic, assign) DegreeType degree;
 
 @end
 
@@ -45,6 +48,8 @@ typedef NS_ENUM(NSUInteger, DegreeType) {
 
 @property (nonatomic, assign) NSInteger cid;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *info;
+@property (nonatomic, assign) DegreeType degree;
 
 @end
 

@@ -7,12 +7,16 @@
 //
 
 #import "RecommendCircleTableCell.h"
+#import "UIView+Extension.h"
 
 @interface RecommendCircleTableCell () {
     CircleInfo *_circleInfo;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *degreeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+@property (weak, nonatomic) IBOutlet UIButton *lookBtn;
 
 - (IBAction)lookBtnClick:(UIButton *)sender;
 
@@ -32,6 +36,9 @@
 
 #pragma mark - view
 - (void)setCircleInfo:(CircleInfo *)circleInfo {
+    [self.degreeLabel setCornerRadius:2 maskToBounds:YES];
+    [self.lookBtn setCornerRadius:6 maskToBounds:YES];
+    
     if (!circleInfo) {
         return;
     }
@@ -41,6 +48,12 @@
     if ([_circleInfo.name length] > 0) {
         self.nameLabel.text = _circleInfo.name;
     }
+    
+    if ([_circleInfo.info length] > 0) {
+        self.detailLabel.text = _circleInfo.info;
+    }
+    
+    _degreeLabel.text = [DegreeInfo simpleDegreeName:_circleInfo.degree];
 }
 
 #pragma mark - action

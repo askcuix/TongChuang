@@ -3,48 +3,47 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="KGk-i7-Jjw" customClass="NewContactTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="302" height="55"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="KGk-i7-Jjw" customClass="NewContactTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="302" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iwE-1W-Cgt">
-                        <rect key="frame" x="8" y="8" width="37" height="37"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="37" id="IuY-8T-IFS"/>
-                            <constraint firstAttribute="width" constant="37" id="iOH-eG-13p"/>
-                        </constraints>
+                    <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_friends_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="iwE-1W-Cgt">
+                        <rect key="frame" x="15" y="14" width="22" height="22"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39h-Bk-Cfg">
-                        <rect key="frame" x="60" y="13" width="180" height="28"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="180" id="Oc7-FD-T8l"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="新的人脉" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39h-Bk-Cfg">
+                        <rect key="frame" x="47" y="18" width="180" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="hPn-UF-twe">
+                        <rect key="frame" x="277" y="17" width="10" height="16"/>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="iwE-1W-Cgt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="BRs-2D-3yd"/>
-                    <constraint firstItem="39h-Bk-Cfg" firstAttribute="leading" secondItem="iwE-1W-Cgt" secondAttribute="trailing" constant="15" id="Wbe-er-PBY"/>
-                    <constraint firstAttribute="centerY" secondItem="39h-Bk-Cfg" secondAttribute="centerY" id="il9-Th-owG"/>
-                    <constraint firstItem="iwE-1W-Cgt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="oZe-ir-7P1"/>
-                    <constraint firstItem="39h-Bk-Cfg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="qBC-L9-Ayj"/>
+                    <constraint firstItem="hPn-UF-twe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="ISR-0h-TZ2"/>
+                    <constraint firstAttribute="trailing" secondItem="hPn-UF-twe" secondAttribute="trailing" constant="15" id="Lie-nM-Yok"/>
+                    <constraint firstItem="iwE-1W-Cgt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="WcP-sZ-5Ry"/>
+                    <constraint firstItem="39h-Bk-Cfg" firstAttribute="leading" secondItem="iwE-1W-Cgt" secondAttribute="trailing" constant="10" id="gVv-Yz-Vfk"/>
+                    <constraint firstItem="iwE-1W-Cgt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="hS1-gq-L4G"/>
+                    <constraint firstItem="39h-Bk-Cfg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="kUe-TF-eer"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="iconImgView" destination="iwE-1W-Cgt" id="JeM-ek-KgN"/>
-                <outlet property="titleLabel" destination="39h-Bk-Cfg" id="Cji-89-KkM"/>
+                <outlet property="iconImgView" destination="iwE-1W-Cgt" id="KMK-bS-1Xk"/>
             </connections>
             <point key="canvasLocation" x="506" y="380.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="new_friends_icon.png" width="22" height="22"/>
+        <image name="right_arrow.png" width="10" height="16"/>
+    </resources>
 </document>
