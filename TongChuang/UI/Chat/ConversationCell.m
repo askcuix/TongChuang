@@ -7,8 +7,9 @@
 //
 
 #import "ConversationCell.h"
+#import "UIColor+Extension.h"
 
-static CGFloat kImageSize = 45;
+static CGFloat kImageSize = 50;
 static CGFloat kVerticalSpacing = 8;
 static CGFloat kHorizontalSpacing = 10;
 static CGFloat kTimestampeLabelWidth = 100;
@@ -37,7 +38,7 @@ static CGFloat kLittleBadgeSize = 10;
 }
 
 + (CGFloat)heightOfCell {
-    return kImageSize + kVerticalSpacing * 2;
+    return 66;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -81,9 +82,9 @@ static CGFloat kLittleBadgeSize = 10;
 - (UILabel *)timestampLabel {
     if (_timestampLabel == nil) {
         _timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth([UIScreen mainScreen].bounds) - kHorizontalSpacing - kTimestampeLabelWidth, CGRectGetMinY(_avatarImageView.frame), kTimestampeLabelWidth, kNameLabelHeight)];
-        _timestampLabel.font = [UIFont systemFontOfSize:13];
+        _timestampLabel.font = [UIFont systemFontOfSize:11];
         _timestampLabel.textAlignment = NSTextAlignmentRight;
-        _timestampLabel.textColor = [UIColor grayColor];
+        _timestampLabel.textColor = UIColorHex(@"#b2b2b2");
     }
     return _timestampLabel;
 }
@@ -91,7 +92,8 @@ static CGFloat kLittleBadgeSize = 10;
 - (UILabel *)nameLabel {
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_avatarImageView.frame) + kHorizontalSpacing, CGRectGetMinY(_avatarImageView.frame), CGRectGetMinX(_timestampLabel.frame) - kHorizontalSpacing * 3 - kImageSize, kNameLabelHeight)];
-        _nameLabel.font = [UIFont systemFontOfSize:17];
+        _nameLabel.font = [UIFont systemFontOfSize:15];
+        _nameLabel.textColor = UIColorHex(@"#262626");
     }
     return _nameLabel;
 }
@@ -100,6 +102,8 @@ static CGFloat kLittleBadgeSize = 10;
     if (_messageTextLabel == nil) {
         _messageTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(_nameLabel.frame), CGRectGetMaxY(_nameLabel.frame), CGRectGetWidth([UIScreen mainScreen].bounds)- 3 * kHorizontalSpacing - kImageSize, kMessageLabelHeight)];
         _messageTextLabel.backgroundColor = [UIColor clearColor];
+        _messageTextLabel.font = [UIFont systemFontOfSize:13];
+        _messageTextLabel.textColor = UIColorHex(@"#8d8d8d");
     }
     return _messageTextLabel;
 }

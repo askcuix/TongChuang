@@ -200,7 +200,7 @@ static NSMutableArray *cacheConvs;
         if (conversation.muted) {
             cell.litteBadgeView.hidden = NO;
         } else {
-            cell.badgeView.badgeText = [NSString stringWithFormat:@"%ld", conversation.unreadCount];
+            cell.badgeView.badgeText = [NSString stringWithFormat:@"%ld", (long)conversation.unreadCount];
         }
     }
 

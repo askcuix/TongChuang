@@ -30,4 +30,7 @@
 
 #define WEAKSELF __weak typeof(self) weakSelf = self;
 
+//misc
+#define kAlphabetList @"ABCDEFGHIJKLMNOPQRSTUVWXYZ#"
+
 #endif

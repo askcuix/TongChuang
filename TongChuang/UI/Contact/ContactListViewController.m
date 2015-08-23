@@ -14,6 +14,7 @@
 #import "ContactTableCell.h"
 #import "AppModel.h"
 #import "ViewUtil.h"
+#import "PinyingUtil.h"
 #import "ChatManager.h"
 #import "NewContactViewController.h"
 #import "ContactInfoViewController.h"
@@ -28,6 +29,9 @@
 @property (nonatomic, strong) NSArray *groupData;
 @property (nonatomic, strong) NSArray *circleData;
 
+@property (nonatomic, strong) NSMutableDictionary *friendsMap;
+@property (nonatomic, strong) NSArray *friendsIndexs;
+
 @end
 
 @implementation ContactListViewController
@@ -35,6 +39,9 @@
 - (instancetype)init {
     if ((self = [super init])) {
         self.title = @"人脉";
+        
+        self.friendsMap = [NSMutableDictionary dictionary];
+        self.friendsIndexs = [NSArray array];
         
         [ViewUtil setNormalTabItem:self imageName:@"contact_normal.png"];
         [ViewUtil setSelectedTabItem:self imageName:@"contact_press.png"];
@@ -166,7 +173,25 @@
                 objects = [NSMutableArray array];
             }
             
-            self.dataSource = [objects mutableCopy];
+            for (UserInfo *friend in objects) {
+                NSString *firstLetter = [[[PinyingUtil getFirstLetterOfHanziString:friend.name] substringToIndex:1] uppercaseString];
+                
+                if ([kAlphabetList rangeOfString:firstLetter].location == NSNotFound) {
+                    firstLetter = @"#";
+                }
+                
+                NSMutableArray *groupedFriends = [self.friendsMap objectForKey:firstLetter];
+                if (groupedFriends == nil) {
+                    groupedFriends = [NSMutableArray array];
+                }
+                
+                [groupedFriends addObject:friend];
+                [self.friendsMap setObject:groupedFriends forKey:firstLetter];
+            }
+            
+            self.friendsIndexs = [[self.friendsMap allKeys] sortedArrayUsingSelector:
+                         @selector(compare:)];
+            
             friendsBlock(nil);
         }
     }];
@@ -225,16 +250,37 @@
     } else if (section == 2) {
         return self.circleData.count;
     } else {
-        return self.dataSource.count;
+        NSString *index = self.friendsIndexs[section - 3];
+        NSMutableArray *friendsOfSection = self.friendsMap[index];
+        return [friendsOfSection count];
     }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 3 + [self.friendsIndexs count];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    //设置索引字体颜色
+    tableView.sectionIndexColor = UIColorHex(@"#555555");
+    
+    return self.friendsIndexs;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    return [self.friendsIndexs indexOfObject:title] + 3;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @[@"", @"我的群", @"我的圈子", @"我的好友"][section];
+    if (section == 0) {
+        return @"";
+    } else if (section == 1) {
+        return @"我的群";
+    } else if (section == 2) {
+        return @"我的圈子";
+    }
+    
+    return self.friendsIndexs[section - 3];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -288,7 +334,10 @@
         
         return cell;
     } else {
-        UserInfo *user = [self.dataSource objectAtIndex:indexPath.row];
+        NSString *index = self.friendsIndexs[indexPath.section - 3];
+        NSMutableArray *friendsOfSection = [self.friendsMap objectForKey:index];
+        
+        UserInfo *user = [friendsOfSection objectAtIndex:indexPath.row];
         
         ContactTableCell *cell = [ContactTableCell createOrDequeueCellByTableView:tableView];
         [cell.avatarImgView sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
@@ -323,14 +372,17 @@
     } else if (indexPath.section == 2) {
         
     } else {
+        NSString *index = self.friendsIndexs[indexPath.section - 3];
+        NSMutableArray *friendsOfSection = [self.friendsMap objectForKey:index];
+        
         ContactInfoViewController *contactInfoController = [ControllerManager viewControllerInMainStoryboard:@"ContactInfoViewController"];
-        contactInfoController.user = [self.dataSource objectAtIndex:indexPath.row];
+        contactInfoController.user = [friendsOfSection objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:contactInfoController animated:YES];
     }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 3) {
+    if (indexPath.section > 2) {
         return YES;
     }
     
@@ -356,8 +408,7 @@
             [self hideProgress];
             
             if (!error) {
-                [self.dataSource removeObjectAtIndex:alertView.tag];
-                [self.tableView reloadData];
+                [self refresh];
             }
         }];
         

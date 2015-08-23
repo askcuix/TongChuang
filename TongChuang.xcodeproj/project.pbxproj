@@ -38,6 +38,9 @@
 		83480F501B88C247003F72F3 /* me_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83480F4E1B88C247003F72F3 /* me_press@2x.png */; };
 		83480F511B88C247003F72F3 /* me_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83480F4F1B88C247003F72F3 /* me_normal@2x.png */; };
 		83480F531B88DE86003F72F3 /* new_friends_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83480F521B88DE86003F72F3 /* new_friends_icon@2x.png */; };
+		83480F571B89667A003F72F3 /* PinyingUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 83480F561B89667A003F72F3 /* PinyingUtil.mm */; };
+		83480F5E1B89671A003F72F3 /* PinyinTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83480F5A1B89671A003F72F3 /* PinyinTable.cpp */; };
+		83480F5F1B89671A003F72F3 /* T9SearchEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83480F5C1B89671A003F72F3 /* T9SearchEngine.cpp */; };
 		834E23BC1B8493D600FF7610 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 834E23BB1B8493D600FF7610 /* back@2x.png */; };
 		834E23C11B84DFE700FF7610 /* KeyboardHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 834E23C01B84DFE700FF7610 /* KeyboardHelper.m */; };
 		835B08DE1B8353D2008CA17E /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B08DD1B8353D2008CA17E /* UIView+Extension.m */; };
@@ -173,6 +176,13 @@
 		83480F4E1B88C247003F72F3 /* me_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "me_press@2x.png"; sourceTree = "<group>"; };
 		83480F4F1B88C247003F72F3 /* me_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "me_normal@2x.png"; sourceTree = "<group>"; };
 		83480F521B88DE86003F72F3 /* new_friends_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_friends_icon@2x.png"; sourceTree = "<group>"; };
+		83480F551B89667A003F72F3 /* PinyingUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinyingUtil.h; sourceTree = "<group>"; };
+		83480F561B89667A003F72F3 /* PinyingUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PinyingUtil.mm; sourceTree = "<group>"; };
+		83480F591B89671A003F72F3 /* base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base.h; sourceTree = "<group>"; };
+		83480F5A1B89671A003F72F3 /* PinyinTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PinyinTable.cpp; sourceTree = "<group>"; };
+		83480F5B1B89671A003F72F3 /* PinyinTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinyinTable.h; sourceTree = "<group>"; };
+		83480F5C1B89671A003F72F3 /* T9SearchEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = T9SearchEngine.cpp; sourceTree = "<group>"; };
+		83480F5D1B89671A003F72F3 /* T9SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = T9SearchEngine.h; sourceTree = "<group>"; };
 		834E23BB1B8493D600FF7610 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		834E23BF1B84DFE700FF7610 /* KeyboardHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardHelper.h; sourceTree = "<group>"; };
 		834E23C01B84DFE700FF7610 /* KeyboardHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardHelper.m; sourceTree = "<group>"; };
@@ -372,6 +382,18 @@
 			name = guide;
 			sourceTree = "<group>";
 		};
+		83480F581B89671A003F72F3 /* t9search */ = {
+			isa = PBXGroup;
+			children = (
+				83480F591B89671A003F72F3 /* base.h */,
+				83480F5A1B89671A003F72F3 /* PinyinTable.cpp */,
+				83480F5B1B89671A003F72F3 /* PinyinTable.h */,
+				83480F5C1B89671A003F72F3 /* T9SearchEngine.cpp */,
+				83480F5D1B89671A003F72F3 /* T9SearchEngine.h */,
+			);
+			path = t9search;
+			sourceTree = "<group>";
+		};
 		834E23BE1B84DFB500FF7610 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,6 +501,9 @@
 				833B83B51B53C8DE0011AEA3 /* Json */,
 				833B83B11B53C8430011AEA3 /* Url */,
 				835C21C91B4D52FB0096EC89 /* Secure */,
+				83480F581B89671A003F72F3 /* t9search */,
+				83480F551B89667A003F72F3 /* PinyingUtil.h */,
+				83480F561B89667A003F72F3 /* PinyingUtil.mm */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1034,6 +1059,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83480F5E1B89671A003F72F3 /* PinyinTable.cpp in Sources */,
 				83967D8B1B6E7E1F0062F55B /* MatchFriendsViewController.m in Sources */,
 				836DC1D81B7CC2D400F3D0EC /* NewContactTableViewCell.m in Sources */,
 				830ABCC31B661F6400B13202 /* ControllerManager.m in Sources */,
@@ -1045,6 +1071,7 @@
 				834E23C11B84DFE700FF7610 /* KeyboardHelper.m in Sources */,
 				833B83C31B53DD680011AEA3 /* MainTabViewController.m in Sources */,
 				83BEA3C41B76F0AA00FA84BE /* ChatListViewController.m in Sources */,
+				83480F5F1B89671A003F72F3 /* T9SearchEngine.cpp in Sources */,
 				83FC62651B57C14300EF2924 /* IndustryInfoViewController.m in Sources */,
 				83AFBD251B5DE29700653533 /* ServiceSearchViewController.m in Sources */,
 				83A6ADE11B5A735600942665 /* FileUtil.m in Sources */,
@@ -1072,6 +1099,7 @@
 				83BEA3EB1B779D2300FA84BE /* CacheManager.m in Sources */,
 				83A6ADFD1B5B6CD900942665 /* UIImage+ImageEffects.m in Sources */,
 				830ABCC01B66125A00B13202 /* LoginModel.m in Sources */,
+				83480F571B89667A003F72F3 /* PinyingUtil.mm in Sources */,
 				833B65421B7F669800DAF3E4 /* ContactTableCell.m in Sources */,
 				83967D9C1B6F98790062F55B /* RecommendGroupTableCell.m in Sources */,
 				835C21A21B4D4AA40096EC89 /* AppDelegate.m in Sources */,
