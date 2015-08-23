@@ -41,6 +41,7 @@
 		83480F571B89667A003F72F3 /* PinyingUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 83480F561B89667A003F72F3 /* PinyingUtil.mm */; };
 		83480F5E1B89671A003F72F3 /* PinyinTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83480F5A1B89671A003F72F3 /* PinyinTable.cpp */; };
 		83480F5F1B89671A003F72F3 /* T9SearchEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83480F5C1B89671A003F72F3 /* T9SearchEngine.cpp */; };
+		83480F641B898166003F72F3 /* AudioUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480F631B898166003F72F3 /* AudioUtil.m */; };
 		834E23BC1B8493D600FF7610 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 834E23BB1B8493D600FF7610 /* back@2x.png */; };
 		834E23C11B84DFE700FF7610 /* KeyboardHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 834E23C01B84DFE700FF7610 /* KeyboardHelper.m */; };
 		835B08DE1B8353D2008CA17E /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B08DD1B8353D2008CA17E /* UIView+Extension.m */; };
@@ -183,6 +184,8 @@
 		83480F5B1B89671A003F72F3 /* PinyinTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinyinTable.h; sourceTree = "<group>"; };
 		83480F5C1B89671A003F72F3 /* T9SearchEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = T9SearchEngine.cpp; sourceTree = "<group>"; };
 		83480F5D1B89671A003F72F3 /* T9SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = T9SearchEngine.h; sourceTree = "<group>"; };
+		83480F621B898166003F72F3 /* AudioUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioUtil.h; sourceTree = "<group>"; };
+		83480F631B898166003F72F3 /* AudioUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioUtil.m; sourceTree = "<group>"; };
 		834E23BB1B8493D600FF7610 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		834E23BF1B84DFE700FF7610 /* KeyboardHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardHelper.h; sourceTree = "<group>"; };
 		834E23C01B84DFE700FF7610 /* KeyboardHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardHelper.m; sourceTree = "<group>"; };
@@ -394,6 +397,17 @@
 			path = t9search;
 			sourceTree = "<group>";
 		};
+		83480F611B898114003F72F3 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				83480F551B89667A003F72F3 /* PinyingUtil.h */,
+				83480F561B89667A003F72F3 /* PinyingUtil.mm */,
+				83480F621B898166003F72F3 /* AudioUtil.h */,
+				83480F631B898166003F72F3 /* AudioUtil.m */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 		834E23BE1B84DFB500FF7610 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,6 +506,7 @@
 		835C21C31B4D4B8F0096EC89 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				83480F611B898114003F72F3 /* Misc */,
 				835B08DB1B83532F008CA17E /* Extensions */,
 				833B653A1B7F38CF00DAF3E4 /* View */,
 				83967D6B1B68DD940062F55B /* Validate */,
@@ -502,8 +517,6 @@
 				833B83B11B53C8430011AEA3 /* Url */,
 				835C21C91B4D52FB0096EC89 /* Secure */,
 				83480F581B89671A003F72F3 /* t9search */,
-				83480F551B89667A003F72F3 /* PinyingUtil.h */,
-				83480F561B89667A003F72F3 /* PinyingUtil.mm */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1097,6 +1110,7 @@
 				83FC626D1B58F75100EF2924 /* ImageCropperViewController.m in Sources */,
 				83A6ADED1B5AA45B00942665 /* AvatarUtil.m in Sources */,
 				83BEA3EB1B779D2300FA84BE /* CacheManager.m in Sources */,
+				83480F641B898166003F72F3 /* AudioUtil.m in Sources */,
 				83A6ADFD1B5B6CD900942665 /* UIImage+ImageEffects.m in Sources */,
 				830ABCC01B66125A00B13202 /* LoginModel.m in Sources */,
 				83480F571B89667A003F72F3 /* PinyingUtil.mm in Sources */,

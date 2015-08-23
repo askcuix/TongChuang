@@ -7,7 +7,7 @@
 //
 
 #import "ChatSoundManager.h"
-#import <AudioToolbox/AudioToolbox.h>
+#import "AudioUtil.h"
 
 #define kPlaySoundWhenNotChattingKey @"needPlaySoundWhenNotChatting"
 #define kPlaySoundWhenChattingKey @"needPlaySoundWhenChatting"
@@ -40,42 +40,34 @@
         self.needPlaySoundWhenNotChatting  = [[[NSUserDefaults standardUserDefaults] objectForKey:kPlaySoundWhenNotChattingKey] boolValue];
         self.needVibrateWhenNotChatting = [[[NSUserDefaults standardUserDefaults] objectForKey:kVibrateWhenNotChattingKey] boolValue];
         
-        [self createSoundWithName:@"loudReceive" soundId:&_loudReceiveSound];
-        [self createSoundWithName:@"send" soundId:&_sendSound];
-        [self createSoundWithName:@"receive" soundId:&_receiveSound];
+        _loudReceiveSound = [AudioUtil createSoundID:@"loudReceive" type:@"caf"];
+        _sendSound = [AudioUtil createSoundID:@"send" type:@"caf"];
+        _receiveSound = [AudioUtil createSoundID:@"receive" type:@"caf"];
     }
     return self;
 }
 
-- (void)createSoundWithName:(NSString *)name soundId:(SystemSoundID *)soundId {
-    NSURL *url = [[NSBundle mainBundle] URLForResource:name withExtension:@"caf"];
-    OSStatus errorCode = AudioServicesCreateSystemSoundID((__bridge CFURLRef)(url) , soundId);
-    if (errorCode != 0) {
-        NSLog(@"create sound failed");
-    }
-}
-
 - (void)playSendSoundIfNeed {
     if (self.needPlaySoundWhenChatting) {
-        AudioServicesPlaySystemSound(_sendSound);
+        [AudioUtil playVoice:_sendSound];
     }
 }
 
 - (void)playReceiveSoundIfNeed {
     if (self.needPlaySoundWhenChatting) {
-        AudioServicesPlaySystemSound(_receiveSound);
+        [AudioUtil playVoice:_receiveSound];
     }
 }
 
 - (void)playLoudReceiveSoundIfNeed {
     if (self.needPlaySoundWhenNotChatting) {
-        AudioServicesPlaySystemSound(_loudReceiveSound);
+        [AudioUtil playVoice:_loudReceiveSound];
     }
 }
 
 - (void)vibrateIfNeed {
     if (self.needVibrateWhenNotChatting) {
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        [AudioUtil playVibrate];
     }
 }
 
